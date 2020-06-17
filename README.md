@@ -6,7 +6,7 @@ Each edition has its own branch, named `editions/[EDITION]`. The default branch 
 
 ## Release History
 
-| Branch                                                                  | Edition | Release Date |
-| ----------------------------------------------------------------------- |:-------:|:------------:|
-| [editions/5.0](https://github.com/raywenderlich/NAME/tree/editions/5.0) | 5.0     | 2019-10-01   |
+| Branch                                                                          | Edition | Release Date |
+| ------------------------------------------------------------------------------- |:-------:|:------------:|
+| [editions/5.0](https://github.com/raywenderlich/sa-materials/tree/editions/5.0) | 5.0     | 2019-10-01   |
 
