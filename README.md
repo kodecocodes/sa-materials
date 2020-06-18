@@ -8,5 +8,6 @@ Each edition has its own branch, named `editions/[EDITION]`. The default branch 
 
 | Branch                                                                          | Edition | Release Date |
 | ------------------------------------------------------------------------------- |:-------:|:------------:|
+| [editions/6.0](https://github.com/raywenderlich/sa-materials/tree/editions/6.0) | 6.0     | ????-??-??   |
 | [editions/5.0](https://github.com/raywenderlich/sa-materials/tree/editions/5.0) | 5.0     | 2019-10-01   |
 
