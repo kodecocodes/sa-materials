@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -17,6 +17,10 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
+///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -50,7 +54,7 @@ extension TeamRecord {
 struct BaseballRecord: TeamRecord {
   var wins: Int
   var losses: Int
-    
+
   var winningPercentage: Double {
     Double(wins) / Double(wins + losses)
   }
@@ -67,7 +71,7 @@ struct BasketballRecord: TeamRecord {
   var wins: Int
   var losses: Int
   let seasonLength = 82
-    
+
   var winningPercentage: Double {
     Double(wins) / Double(wins + losses)
   }
@@ -93,7 +97,7 @@ struct HockeyRecord: TeamRecord {
   var wins: Int
   var losses: Int
   var ties: Int
-    
+
   // Hockey record introduces ties, and has
   // its own implementation of winningPercentage
   var winningPercentage: Double {
@@ -124,7 +128,7 @@ struct CricketRecord: WinLoss {
   var wins: Int
   var losses: Int
   var draws: Int
-    
+
   var winningPercentage: Double {
     Double(wins) / Double(wins + losses + draws)
   }
@@ -170,7 +174,7 @@ rugbyRecord.winningPercentage
 class TeamRecordBase {
   var wins = 0
   var losses = 0
-    
+
   var winningPercentage: Double {
     Double(wins) / Double(wins + losses)
   }
@@ -178,18 +182,16 @@ class TeamRecordBase {
 
 // Will not compile: inheritance is only possible with classes.
 /*
-struct BaseballRecord: TeamRecordBase {
-    
-}
+struct BaseballRecord: TeamRecordBase {}
 */
 
 // Inefficent Class Implementation
 /*
 class HockeyRecord: TeamRecordBase {
   var ties = 0
- 
+
   override var winningPercentage: Double {
-    Double(wins) / Double(wins + losses + ties)
+  Double(wins) / Double(wins + losses + ties)
   }
 }
  
@@ -198,14 +200,12 @@ class TieableRecordBase: TeamRecordBase {
  
   override var winningPercentage: Double {
     Double(wins) / Double(wins + losses + ties)
-  }
+   }
 }
  
-class HockeyRecord: TieableRecordBase {
-}
+class HockeyRecord: TieableRecordBase {}
  
-class CricketRecord: TieableRecordBase {
-}
+class CricketRecord: TieableRecordBase {}
  
 extension TieableRecordBase {
   var totalPoints: Int {
@@ -240,7 +240,7 @@ struct NewHockeyRecord: TeamRecord, TieableRecord, DivisionalRecord, CustomStrin
   var ties: Int
   var divisionalWins: Int
   var divisionalLosses: Int
-    
+
   var description: String {
     "\(wins) - \(losses) - \(ties)"
   }
