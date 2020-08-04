@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,7 +33,7 @@
 import Foundation
 
 protocol Pet {
-	var name: String { get }
+  var name: String { get }
 }
 
 //protocol Pet {
@@ -38,7 +42,7 @@ protocol Pet {
 //}
 
 struct Cat: Pet {
-	var name: String
+  var name: String
 }
 
 var somePet: Pet = Cat(name: "Whiskers")
@@ -49,28 +53,28 @@ var somePet: Pet = Cat(name: "Whiskers")
 //}
 
 class HeavyThing: WeightCalculatable {
-	// This heavy thing only needs integer accuracy
-	typealias WeightType = Int
-	
-	var weight: Int {
+  // This heavy thing only needs integer accuracy
+  typealias WeightType = Int
+
+  var weight: Int {
     100
-	}
+  }
 }
 
 class LightThing: WeightCalculatable {
-	// This light thing needs decimal places
-	typealias WeightType = Double
-	
-	var weight: Double {
+  // This light thing needs decimal places
+  typealias WeightType = Double
+
+  var weight: Double {
     0.0025
-	}
+  }
 }
 
 //class StringWeightThing: WeightCalculatable {
 //  typealias WeightType = String
 //
 //  var weight: String {
-//    "That doesn't make sense"
+//  "That doesn't make sense"
 //  }
 //}
 //
@@ -78,19 +82,19 @@ class LightThing: WeightCalculatable {
 //  typealias WeightType = Cat
 //
 //  var weight: Cat {
-//    Cat(name: "What is this cat doing here?")
+//  Cat(name: "What is this cat doing here?")
 //  }
 //}
 
 protocol WeightCalculatable {
-	associatedtype WeightType: Numeric
-	var weight: WeightType { get }
+  associatedtype WeightType: Numeric
+  var weight: WeightType { get }
 }
 
 extension WeightCalculatable {
-	static func + (left: Self, right: Self) -> WeightType {
+  static func + (left: Self, right: Self) -> WeightType {
     left.weight + right.weight
-	}
+  }
 }
 
 var heavy1 = HeavyThing()
@@ -112,23 +116,23 @@ var light1 = LightThing()
 //
 //extension Factory {
 //  func produce() -> [Product] {
-//    var items: [Product] = []
-//    productionLines.forEach { items.append($0.produce()) }
-//    print("Finished Production")
-//    print("-------------------")
-//    return items
+//  var items: [Product] = []
+//  productionLines.forEach { items.append($0.produce()) }
+//  print("Finished Production")
+//  print("-------------------")
+//  return items
 //  }
 //}
 //
 //struct Car: Product {
 //  init() {
-//    print("Producing one awesome Car 🚔")
+//  print("Producing one awesome Car 🚔")
 //  }
 //}
 //
 //struct CarProductionLine: ProductionLine {
 //  func produce() -> Product {
-//    Car()
+//  Car()
 //  }
 //}
 //
@@ -142,13 +146,13 @@ var light1 = LightThing()
 //
 //struct Chocolate: Product {
 //  init() {
-//    print("Producing one chocolate bar 🍫")
+//  print("Producing one chocolate bar 🍫")
 //  }
 //}
 //
 //struct ChocolateProductionLine: ProductionLine {
 //  func produce() -> Product {
-//    Chocolate()
+//  Chocolate()
 //  }
 //}
 //
@@ -209,7 +213,7 @@ chocolateFactory.productionLines = [GenericProductionLine<Chocolate>(), GenericP
 chocolateFactory.produce()
 
 protocol GraphNode {
-	var connectedNodes: [GraphNode] { get set }
+  var connectedNodes: [GraphNode] { get set }
 }
 
 //protocol Matryoshka {
@@ -225,15 +229,15 @@ protocol GraphNode {
 //}
 
 protocol Matryoshka: AnyObject {
-	var inside: Self? { get set }
+  var inside: Self? { get set }
 }
 
 final class HandCraftedMatryoshka: Matryoshka {
-	var inside: HandCraftedMatryoshka?
+  var inside: HandCraftedMatryoshka?
 }
 
 final class MachineCraftedMatryoshka: Matryoshka {
-	var inside: MachineCraftedMatryoshka?
+  var inside: MachineCraftedMatryoshka?
 }
 
 var handMadeDoll = HandCraftedMatryoshka()
@@ -245,46 +249,46 @@ var array2: [HeavyThing] = []
 var array3: [LightThing] = []
 
 class VeryHeavyThing: WeightCalculatable {
-	typealias WeightType = Int
-	
-	var weight: Int {
+  typealias WeightType = Int
+
+  var weight: Int {
     9001
-	}
+  }
 }
 
 var heavyList: [Any] = [HeavyThing(), VeryHeavyThing()]
 
 class AnyHeavyThing<T: Numeric>: WeightCalculatable {
-	var weight: T {
+  var weight: T {
     123
-	}
+  }
 }
 
 class HeavyThing2: AnyHeavyThing<Int> {
-	override var weight: Int {
+  override var weight: Int {
     100
-	}
+  }
 }
 
 class VeryHeavyThing2: AnyHeavyThing<Int> {
-	override var weight: Int {
+  override var weight: Int {
     9001
-	}
+  }
 }
 
 var heavyList2 = [HeavyThing2(), VeryHeavyThing2()]
 heavyList2.forEach { print($0.weight) }
 
 func makeFactory(numberOfLines: Int) -> some Factory {
-	var factory = GenericFactory<Car>()
-	for _ in 0..<numberOfLines {
-		factory.productionLines.append(GenericProductionLine<Car>())
-	}
-	return factory
+  var factory = GenericFactory<Car>()
+  for _ in 0..<numberOfLines {
+    factory.productionLines.append(GenericProductionLine<Car>())
+  }
+  return factory
 }
 
 func makeEquatableNumeric() -> some Numeric & Equatable {
-	return 1
+  return 1
 }
 
 let someVar = makeEquatableNumeric()
