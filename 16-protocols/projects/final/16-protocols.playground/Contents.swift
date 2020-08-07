@@ -249,7 +249,18 @@ named.name = "Still Structy?"
 named.name
 copy.name
 
-//protocol Named: class {
+protocol Identifiable {
+  associatedtype ID: Hashable
+  var id: ID { get }
+}
+
+extension ClassyName: Identifiable {
+  var id: String {
+    name
+  }
+}
+
+//protocol Named: AnyObject {
 //  var name: String { get set }
 //}
 
