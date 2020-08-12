@@ -146,6 +146,11 @@ let numbers2 = userInput.compactMap {
   Int($0)
 }
 
+let userInputNested = [["0", "1"], ["a", "b", "c"], ["🐕"]]
+let allUserInput = userInputNested.flatMap {
+  $0
+}
+
 let sum = prices.reduce(0) {
   $0 + $1
 }
