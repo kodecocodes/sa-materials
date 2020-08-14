@@ -114,6 +114,15 @@ class BankingTests: XCTestCase {
     let check = checkingAccount.writeCheck(amount: 100)
     XCTAssertNil(check)
   }
+
+  func testNewAPI() {
+    guard #available(iOS 14, *) else {
+      XCTFail("Only availble in iOS 14 and above")
+      return
+    }
+
+    // perform test
+  }
 }
 
 BankingTests.defaultTestSuite.run()
