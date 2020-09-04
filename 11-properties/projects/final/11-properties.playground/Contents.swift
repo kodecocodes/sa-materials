@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ struct Contact {
 
 var person = Contact(fullName: "Grace Murray",
                      emailAddress: "grace@navy.mil")
-person.relationship // friend
+person.relationship // Friend
 
 var boss = Contact(fullName: "Ray Wenderlich",
                    emailAddress: "ray@raywenderlich.com",

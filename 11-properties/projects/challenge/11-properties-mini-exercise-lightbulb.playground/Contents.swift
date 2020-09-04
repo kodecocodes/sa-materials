@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,11 @@
 /// THE SOFTWARE.
 /*:
  ## Properties Mini-exercise, Lightbulb
- In the lightbulb example, the bulb goes back to a successful setting if the current gets too high. In real life, that wouldn't work. The bulb would burn out! Rewrite the structure so that the bulb turns off before the current burns it out. You'll need to use the `willSet` observer for this. This observer gets called *before* the value is changed. The value that is about to be set is available in the constant `newValue`. Keep in mind that you cannot change this `newValue`, and it will still be set, so you'll have to do more than just add a `willSet` observer.
+ In the light bulb example, the bulb goes back to a successful setting if the current gets too high. In real life, that wouldn’t work. The bulb would burn out!
+
+ Your task is to rewrite the structure so that the bulb turns off before the current burns it out.
+
+ Hint: You’ll need to use the `willSet` observer that gets called before value is changed. The value that is about to be set is available in the constant `newValue`. The trick is that you can’t change this `newValue`, and it will still be set, so you’ll have to go beyond adding a `willSet` observer. :]
 */
 struct LightBulb {
   static let maxCurrent = 40
