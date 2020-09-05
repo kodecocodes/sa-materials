@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -50,7 +50,7 @@
 struct Circle {
   
   var radius = 0.0
-  
+
   var area: Double {
     get {
       .pi * radius * radius
@@ -63,6 +63,7 @@ struct Circle {
   mutating func grow(byFactor factor: Double) {
     area *= factor
   }
+  
 }
 
 var circle = Circle(radius: 5)
@@ -70,32 +71,32 @@ circle.area // 78.54
 circle.grow(byFactor: 3)
 circle.area // 235.62
 
-/*
+/*:
  ### Challenge 2
+ 
  Below is a naive way of writing `advance()` for the `SimpleDate` structure you saw earlier in the chapter:
  
  ```swift
-// let months = ["January", "February", "March",
-//               "April", "May", "June",
-//              "July", "August", "September",
-//              "October", "November", "December"]
-//
-// struct SimpleDate {
-//   var month: String
-//   var day: Int
-//
-//  mutating func advance() {
-//     day += 1
-//  }
-// }
-
-var date = SimpleDate(month: "December", day: 31)
-date.advance()
-date.month // December; should be January!
-date.day // 32; should be 1!
+/// let months = ["January", "February", "March",
+///               "April", "May", "June",
+///              "July", "August", "September",
+///              "October", "November", "December"]
+///
+/// struct SimpleDate {
+///   var month: String
+///   var day: Int
+///
+///  mutating func advance() {
+///     day += 1
+///  }
+/// }
+///
+/// var date = SimpleDate(month: "December", day: 31)
+/// date.advance()
+/// date.month // December; should be January!
+/// date.day // 32; should be 1!
 ```
- 
- */
+*/
 let months = ["January", "February", "March",
               "April", "May", "June",
               "July", "August", "September",
@@ -162,7 +163,9 @@ Math.isEven(20) // true
 Math.isEven(21) // false
 /*:
  ### Challenge 4
- It turns out that `Int` is just a struct.  Add the computed properties `isEven` and `isOdd` to `Int` using an extension.
+ It turns out that `Int` is simply a struct.  Add the computed properties `isEven` and `isOdd` to `Int` using an extension.
+ 
+ > Generally, you want to be careful about what functionality you add to standard library types as it can cause confusion for readers.
  */
 extension Int {
   var isEven: Bool {
