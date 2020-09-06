@@ -33,17 +33,17 @@
  Given the `Circle` structure:
  
 ```swift
-// struct Circle {
-//
-//   var radius = 0.0
-//
-//   var area: Double {
-//     .pi * radius * radius
-//   }
-// }
+/// struct Circle {
+///
+///   var radius = 0.0
+///
+///   var area: Double {
+///     .pi * radius * radius
+///   }
+/// }
 ```
  
- Write a method that can change an instance's area by a growth factor. For example if you call `circle.grow(byFactor: 3), the area of the instance will triple.
+ Write a method that can change an instance's area by a growth factor. For example if you call `circle.grow(byFactor: 3)`, the area of the instance will triple.
  
  Hint: Add a setter to `area`.
 */
@@ -74,7 +74,7 @@ circle.area // 235.62
 /*:
  ### Challenge 2
  
- Below is a naive way of writing `advance()` for the `SimpleDate` structure you saw earlier in the chapter:
+ Here is a naïve way of writing `advance()` for the `SimpleDate` structure you saw earlier in the chapter:
  
  ```swift
 /// let months = ["January", "February", "March",
@@ -96,6 +96,8 @@ circle.area // 235.62
 /// date.month // December; should be January!
 /// date.day // 32; should be 1!
 ```
+ 
+ What happens when the function should go from the end of one month to the start of the next? Rewrite `advance()` to account for advancing from December 31st to January 1st.
 */
 let months = ["January", "February", "March",
               "April", "May", "June",
@@ -144,7 +146,7 @@ date.month // January
 date.day // 1
 /*:
  ### Challenge 3
- Add type methods to your `Math` namespace called `isEven` and `isOdd` that return true if a number is even or odd respectively.
+ Add type methods named `isEven` and `isOdd` to your `Math` namespace that return `true` if a number is even or odd respectively.
  */
 struct Math {}
 
