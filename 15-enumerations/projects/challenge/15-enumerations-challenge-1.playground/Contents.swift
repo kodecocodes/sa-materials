@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -31,14 +31,14 @@
  Taking the coin example from earlier in the chapter, begin with an array of coins.
  
  ```swift
- enum Coin: Int {
-   case penny = 1
-   case nickel = 5
-   case dime = 10
-   case quarter = 25
- }
- 
- let coinPurse: [Coin] = [.penny, .quarter, .nickel, .dime, .penny, .dime, .quarter]
+ /// enum Coin: Int {
+ ///   case penny = 1
+ ///   case nickel = 5
+ ///   case dime = 10
+ ///   case quarter = 25
+ /// }
+ ///
+ /// let coinPurse: [Coin] = [.penny, .quarter, .nickel, .dime, .penny, .dime, .quarter]
  ```
  
  Write a function where you can pass in the `coinPurse`, add up the value and return the number of cents.

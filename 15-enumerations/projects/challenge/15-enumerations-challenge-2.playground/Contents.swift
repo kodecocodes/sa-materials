@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -31,9 +31,9 @@
  Taking the example from earlier in the chapter, begin with the `Month` enumeration:
  
  ```swift
- enum Month: Int {
-   case january = 1, february, march, april, may, june, july, august, september, october, november, december
- }
+ /// enum Month: Int {
+ ///   case january = 1, february, march, april, may, june, july, august, september, october, november, december
+ /// }
  ```
  
  Write a computed property to calculate the number of months until summer.

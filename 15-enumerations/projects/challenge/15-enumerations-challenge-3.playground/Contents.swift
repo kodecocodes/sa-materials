@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -31,24 +31,24 @@
  Taking the map example from earlier in the chapter, begin with the `Direction` enumeration:
  
  ```swift
- enum Direction {
-   case north
-   case south
-   case east
-   case west
- }
+ /// enum Direction {
+ ///   case north
+ ///   case south
+ ///    case east
+ ///    case west
+ /// }
  ```
  
  Imagine starting a new level in a video game. The character makes a series of movements in the game. Calculate the position of the character on a top-down level map after a set of movements:
  
  ```swift
- let movements: [Direction] = [.north, .north, .west, .south, .west, .south, .south, .east, .east, .south, .east]
+ /// let movements: [Direction] = [.north, .north, .west, .south, .west, .south, .south, .east, .east, .south, .east]
  ```
  
  **Hint:** Use a tuple for the location:
  
  ```swift
- var location = (x: 0, y: 0)
+ /// var location = (x: 0, y: 0)
  ```
  */
 enum Direction {
