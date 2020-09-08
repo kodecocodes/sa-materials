@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -25,57 +25,64 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-//: ## Chapter 20: Pattern Matching, B
+
+import Foundation
+
 func fibonacci(position: Int) -> Int {
   switch position {
+  // 1
   case let n where n <= 1:
-    return 0
+return 0 // 2
   case 2:
     return 1
+// 3
   case let n:
-    return fibonacci(position: n - 1) + fibonacci(position: n - 2)
-  }
-}
-let fib15 = fibonacci(position: 15)
+    return fibonacci(position: n - 1) + fibonacci(position: n -
+2)
+} }
+let fib15 = fibonacci(position: 15) // 377
 
 for i in 1...100 {
+  // 1
   switch (i % 3, i % 5) {
+  // 2
   case (0, 0):
     print("FizzBuzz", terminator: " ")
   case (0, _):
     print("Fizz", terminator: " ")
   case (_, 0):
     print("Buzz", terminator: " ")
-  case (_, _):
+  // 3
+case (_, _):
     print(i, terminator: " ")
   }
 }
 print("")
 
-let matched = (1...10 ~= 5)
+let matched = (1...10 ~= 5) // true
 
 if case 1...10 = 5 {
-  print("In the range")
-}
-
-func ~=(pattern: [Int], value: Int) -> Bool {
-  for i in pattern {
-    if i == value {
-      return true
-    }
-  }
-  return false
+ print("In the range")
 }
 
 let list = [0, 1, 2, 3]
 let integer = 2
 
-let isInArray = (list ~= integer)
+// 1
+func ~=(pattern: [Int], value: Int) -> Bool {
+  // 2
+  for i in pattern {
+    if i == value {
+// 3
+return true
+} }
+// 4
+return false
+}
 
+let isInArray = (list ~= integer) // true
 if case list = integer {
-  print("The integer is in the array")
+  print("The integer is in the array") // Printed!
 } else {
   print("The integer is not in the array")
 }
-
-let isInList = list.contains(integer)
