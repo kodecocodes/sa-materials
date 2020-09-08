@@ -25,7 +25,7 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-//: ## Chapter 20: Pattern Matching, A (first half of the chapter)
+//: ## Chapter 20: Pattern Matching, A (top half of the chapter)
 
 import Foundation
 
