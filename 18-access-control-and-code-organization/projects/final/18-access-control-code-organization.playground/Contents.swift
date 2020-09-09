@@ -117,10 +117,9 @@ class BankingTests: XCTestCase {
 
   func testNewAPI() {
     guard #available(iOS 14, *) else {
-      XCTFail("Only availble in iOS 14 and above")
+      XCTFail("Only available in iOS 14 and above")
       return
     }
-
     // perform test
   }
 }
