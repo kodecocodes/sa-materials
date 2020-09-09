@@ -43,4 +43,4 @@ struct TV {
 }
 
 let tv = TV(height: 15.7, width: 28)
-let size = tv.diagonal // 32
+tv.diagonal // 32
