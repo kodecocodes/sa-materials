@@ -191,7 +191,7 @@ class HockeyRecord: TeamRecordBase {
   var ties = 0
 
   override var winningPercentage: Double {
-  Double(wins) / Double(wins + losses + ties)
+    Double(wins) / Double(wins + losses + ties)
   }
 }
  
