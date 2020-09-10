@@ -120,7 +120,7 @@ let power: Double = voltage * current
 
 /*:
 ### Challenge 7: Electrical resistance
- The resistance of such an appliance can be then calculated (in a long-winded way) as the power divided by the current squared.
+ The resistance of such an appliance can then be calculated (in a long-winded way) as the power divided by the current squared.
 
  Calculate the resistance and store it in a constant called `resistance` of type `Double`.
  */
@@ -128,7 +128,7 @@ let resistance = power / (current * current)
 
 /*:
 ### Challenge 8: Random integer
- You can create a random integer number by using the function `arc4random()`. This creates a number anywhere between 0 and 4294967295. You can use the modulo operator to truncate this random number to whatever range you want.
+ You can create a random integer number by using the function `arc4random()`. This picks a number anywhere between 0 and 4294967295. You can use the modulo operator to truncate this random number to whatever range you want.
 
  Declare a constant `randomNumber` and assign it a random number generated with `arc4random()`. Then calculate a constant called `diceRoll` and use the random number you just found to create a random number between 1 and 6.
  */
