@@ -74,6 +74,17 @@ operateOnNumbers(4, 2) {
   $0 + $1
 }
 
+func sequenced(first: ()->Void, second: ()->Void) {
+  first()
+  second()
+}
+
+sequenced {
+  print("Hello, ", terminator: "")
+} second: {
+  print("world.")
+}
+
 let voidClosure: () -> Void = {
   print("Swift Apprentice is awesome!")
 }
