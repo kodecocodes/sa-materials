@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2019 Razeware LLC
+ * Copyright (c) 2020 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -92,9 +92,9 @@ for index in stride(from: 10, through: 9, by: -0.1) {
  
  **Hint 1**: Numbers less than 0 should not be considered prime. Check for this case at the start of the function and return early if the number is less than 0.
  
- **Hint 2**: Use a `for` loop to find divisors. If you start at 2 and end before the number itself, then as soon as you find a divisor, you can return `false`.
+ **Hint 2**: Use a `for` loop to find divisors. If you start at two and end before the number itself, then as soon as you find a divisor, you can return `false`.
  
- **Hint 3**: If you want to get *really* clever, you can simply loop from 2 until you reach the square root of `number` rather than going all the way up to `number` itself. I’ll leave it as an exercise for you to figure out why. It may help to think of the number 16, whose square root is 4. The divisors of 16 are 1, 2, 4, 8 and 16.
+ **Hint 3**: If you want to get *really* clever, you can simply loop from two until you reach the square root of `number` rather than going all the way up to `number` itself. I’ll leave it as an exercise for you to figure out why. It may help to think of the number 16, whose square root is 4. The divisors of 16 are 1, 2, 4, 8 and 16.
  */
 
 func isNumberDivisible(_ number: Int, by divisor: Int) -> Bool {
@@ -130,7 +130,7 @@ isPrime(8893)
 /*: 
  ### Challenge 3: Recursive functions
  
- In this challenge, you’re going to see what happens when a function calls *itself*, a behavior called **recursion**. This may sound unusual, but it can be quite useful.
+ In this challenge, you will see what happens when a function calls *itself*, a behavior called **recursion**. This may sound unusual, but it can be quite useful.
  
  You’re going to write a function that computes a value from the **Fibonacci sequence**. Any value in the sequence is the sum of the previous two values. The sequence is defined such that the first two values equal 1. That is, `fibonacci(1) = 1` and `fibonacci(2) = 1`.
  
