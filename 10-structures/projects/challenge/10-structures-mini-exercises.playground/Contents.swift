@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
 import Foundation
 //: ## Mini Exercises
 //: ### Ordering Pizza
-//: Write a struct that represents a pizza order. Include toppings, size and any other option you’d want for a pizza.
+//: Write a structure that represents a pizza order. Include toppings, size and any other option you’d want for a pizza.
 struct Pizza {
   let size: Int // Inches
   let toppings: [String] // Pepperoni, cheese
@@ -68,10 +68,10 @@ struct DeliveryArea {
   }
 }
 
-let area1 = DeliveryArea(center: Location(x: 2, y: 4), radius: 2.5)
-let area2 = DeliveryArea(center: Location(x: 5, y: 9), radius: 2.5)
+let area1 = DeliveryArea(center: Location(x: 3, y: 4), radius: 2.5)
+let area2 = DeliveryArea(center: Location(x: 7, y: 8), radius: 2.5)
 area1.overlaps(with: area2) // false
 
-let area3 = DeliveryArea(center: Location(x: 2, y: 4), radius: 2.5)
-let area4 = DeliveryArea(center: Location(x: 3, y: 5), radius: 2.5)
+let area3 = DeliveryArea(center: Location(x: 3, y: 4), radius: 2.5)
+let area4 = DeliveryArea(center: Location(x: 7, y: 7), radius: 2.5)
 area3.overlaps(with: area4) // true

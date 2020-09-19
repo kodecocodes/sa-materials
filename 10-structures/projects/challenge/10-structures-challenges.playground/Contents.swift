@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,11 +29,6 @@
 import Foundation
 
 /*:
- ## Xcode 11 Note
- For certain versions of Xcode Playgrounds, you may need to run the entire file
- with the Execute Playground button below. The play button next to the line numbers
- may be incorrectly disabled.
-
  ## Structures
  ### Challenge 1
  Imagine you're at a fruit tree farm and you grow different kinds of fruits: pears, apples, and oranges. After the fruits are picked, a truck brings them in to be processed at the central facility. Since the fruits are all mixed together on the truck, the workers in the central facility have to sort them into the correct inventory container one-by-one.
@@ -94,7 +89,7 @@ print("Quantity of apples:\t\t", apples.count)
 print("Quantity of oranges:\t", oranges.count, "\n")
 /*:
  ### Challenge 2
- Create a T-shirt structure that has size, color and material options. Provide methods to calculate the cost of a shirt based on its attributes.
+ Create a T-shirt structure that has size, color and material options. Provide a method to calculate the cost of a shirt based on its attributes.
  */
  
 typealias Size = String
@@ -111,7 +106,7 @@ let wool: Material = "Wool"
 typealias Color = String
 
 /*:
-	**Note:** Using a floating point number is good for demonstrations, but there are subtle but important reasons why you should not use Floats or Doubles for currency in production. Read http://stackoverflow.com/questions/3730019/why-not-use-double-or-float-to-represent-currency
+ - Note: Using a floating point number is good for demonstrations, but there are subtle but important reasons why you should not use Floats or Doubles for currency in production. Read about why in this [answer on Stack Overflow](http://stackoverflow.com/questions/3730019/why-not-use-double-or-float-to-represent-currency).
  */
 
 struct TShirt {
@@ -159,8 +154,8 @@ TShirt(size: xLarge, color: "Gray", material: wool).cost()
 /*:
 ### Challenge 3
  Write the engine for a Battleship-like game. If you aren’t familiar with Battleship, see here: [http://bit.ly/2nT3JBU](http://bit.ly/2nT3JBU)
- * Use an (x, y) coordinate system for your locations and model using a structure.
- * Ships should also be modelled with structures. Record an origin, direction and length.
+ * Use an (x, y) coordinate system for your locations modeled using a structure.
+ * Ships should also be modeled with structures. Record an origin, direction and length.
  * Each ship should be able to report if a “shot” has resulted in a “hit”.
 */
 
