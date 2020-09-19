@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2019 Razeware LLC
+ * Copyright (c) 2020 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -74,6 +74,17 @@ operateOnNumbers(4, 2) {
   $0 + $1
 }
 
+func sequenced(first: ()->Void, second: ()->Void) {
+  first()
+  second()
+}
+
+sequenced {
+  print("Hello, ", terminator: "")
+} second: {
+  print("world.")
+}
+
 let voidClosure: () -> Void = {
   print("Swift Apprentice is awesome!")
 }
@@ -144,6 +155,11 @@ let numbers1 = userInput.map {
 
 let numbers2 = userInput.compactMap {
   Int($0)
+}
+
+let userInputNested = [["0", "1"], ["a", "b", "c"], ["🐕"]]
+let allUserInput = userInputNested.flatMap {
+  $0
 }
 
 let sum = prices.reduce(0) {
