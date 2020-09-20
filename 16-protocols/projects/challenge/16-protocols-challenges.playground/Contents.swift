@@ -34,7 +34,7 @@ import Foundation
 //: Pet shop tasks
 //:
 //: Create a collection of protocols for tasks that need doing at a pet shop. The pet shop has dogs, cats, fish and birds.
-//: The pet shop duties can be broken down into these tasks:
+//: The pet shop duties include these tasks:
 //:
 //: * All pets need to be fed.
 //:
@@ -44,7 +44,7 @@ import Foundation
 //:
 //: * Pets that walk need exercise.
 //:
-//: * Tanks, cages, and litter boxes need to occasionally be cleaned.
+//: * Tanks, cages, and litter boxes need to be cleanded occasionally.
 //:
 
 //: 1. Create classes or structs for each animal and adopt the appropriate protocols. Feel free to simply use a print() statement for the method implementations.
