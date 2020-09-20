@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -60,8 +60,16 @@ date.month
 date.monthsUntilWinterBreak()
 
 let valentinesDay = SimpleDate(month: "February", day: 14)
-valentinesDay.month
-valentinesDay.day
+valentinesDay.month // February
+valentinesDay.day // 14
+
+let octoberFirst = SimpleDate(month: "October")
+octoberFirst.month // October
+octoberFirst.day // 1
+
+let januaryTwentySecond = SimpleDate(day: 22)
+januaryTwentySecond.month // January
+januaryTwentySecond.day // 22
 
 struct Math {
   static func factorial(of number: Int) -> Int {
