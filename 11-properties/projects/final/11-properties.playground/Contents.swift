@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -43,17 +43,17 @@ struct Contact {
 
 var person = Contact(fullName: "Grace Murray",
                      emailAddress: "grace@navy.mil")
-person.relationship // friend
+person.relationship // Friend
 
 var boss = Contact(fullName: "Ray Wenderlich",
                    emailAddress: "ray@raywenderlich.com",
                    relationship: "Boss")
 
-let name = person.fullName // Grace Murray
-let email = person.emailAddress // grace@navy.mil
+person.fullName // Grace Murray
+person.emailAddress // grace@navy.mil
 
 person.fullName = "Grace Hopper"
-let grace = person.fullName // Grace Hopper
+person.fullName // Grace Hopper
 
 //person.emailAddress = "grace@gmail.com" // Error!
 
@@ -77,14 +77,14 @@ struct TV {
 }
 
 var tv = TV(height: 53.93, width: 95.87)
-let size = tv.diagonal // 110
+tv.diagonal // 110
 
 tv.width = tv.height
-let diagonal = tv.diagonal
+tv.diagonal
 
 tv.diagonal = 70
-let height = tv.height // 34.32...
-let width = tv.width // 61.01...
+tv.height // 34.32...
+tv.width // 61.01...
 
 struct Level {
   static var highestLevel = 1
@@ -107,7 +107,7 @@ let level4 = Level(id: 4, boss: "Yeti", unlocked: false)
 // Error: you can't access a type property on an instance
 //let highestLevel = level3.highestLevel
 
-let highestLevel = Level.highestLevel // 1
+Level.highestLevel // 1
 
 struct LightBulb {
   static let maxCurrent = 40
@@ -127,9 +127,9 @@ struct LightBulb {
 
 var light = LightBulb()
 light.current = 50
-var current = light.current // 0
+light.current // 0
 light.current = 40
-current = light.current // 40
+light.current // 40
 
 struct Circle {
   lazy var pi = {
@@ -147,5 +147,5 @@ struct Circle {
 }
 
 var circle = Circle(radius: 5) // got a circle, pi has not been run
-let circumference = circle.circumference // 31.42
+circle.circumference // 31.42
 // also, pi now has a value

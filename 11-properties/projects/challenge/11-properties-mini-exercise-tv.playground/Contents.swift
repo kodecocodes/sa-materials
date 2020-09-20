@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
  Do you have a television or a computer monitor? Measure the height and width, plug it into a `TV` struct, and see if the diagonal measurement matches what you think it is.
  */
 
-// Picture of real TV: http://www.screenmath.com/images/compare02.gif
+// Picture of real TV: https://1.bp.blogspot.com/_lToCdYsa_6Y/TUbNORiitgI/AAAAAAAAABg/WSYmogK0bLc/s1600/compare02.gif
 
 struct TV {
   var height: Double
@@ -43,4 +43,4 @@ struct TV {
 }
 
 let tv = TV(height: 15.7, width: 28)
-let size = tv.diagonal // 32
+tv.diagonal // 32
