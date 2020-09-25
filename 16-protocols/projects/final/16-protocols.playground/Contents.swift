@@ -249,14 +249,9 @@ named.name = "Still Structy?"
 named.name
 copy.name
 
-protocol Identifiable {
-  associatedtype ID: Hashable
-  var id: ID { get }
-}
-
-extension ClassyName: Identifiable {
+extension Student: Identifiable {
   var id: String {
-    name
+    email
   }
 }
 
