@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -17,6 +17,10 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
+///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -40,15 +44,25 @@ enum BakeryError: Error {
   case tooFew(numberOnHand: Int)
   case doNotSell
   case wrongFlavor
+  case inventory
+  case noPower
 }
 
 class Bakery {
+  
   var itemsForSale = [
     "Cookie": Pastry(flavor: "ChocolateChip", numberOnHand: 20),
     "PopTart": Pastry(flavor: "WildBerry", numberOnHand: 13),
     "Donut" : Pastry(flavor: "Sprinkles", numberOnHand: 24),
     "HandPie": Pastry(flavor: "Cherry", numberOnHand: 6)
   ]
+  
+  func open(_ now: Bool = Bool.random()) throws -> Bool {
+    guard now else {
+      throw Bool.random() ? BakeryError.inventory : BakeryError.noPower
+    }
+    return now
+  }
     
   func orderPastry(item: String, amountRequested: Int, flavor: String)  throws  -> Int {
     guard let pastry = itemsForSale[item] else {
@@ -68,10 +82,16 @@ class Bakery {
 
 let bakery = Bakery()
 
-// bakery.orderPastry(item: "Albatross", amountRequested: 1, flavor: "AlbatrossFlavor")
-
+/*
+bakery.open()
+bakery.orderPastry(item: "Albatross", amountRequested: 1, flavor: "AlbatrossFlavor")
+*/
+  
 do {
+  try bakery.open()
   try bakery.orderPastry(item: "Albatross", amountRequested: 1, flavor: "AlbatrossFlavor")
+} catch BakeryError.inventory, BakeryError.noPower {
+  print("Sorry, the bakery is now closed.")
 } catch BakeryError.doNotSell {
   print("Sorry, but we don't sell this item.")
 } catch BakeryError.wrongFlavor {
@@ -80,13 +100,16 @@ do {
   print("Sorry, we don't have enough items to fulfill your order.")
 }
 
+let open = try? bakery.open(false)
 let remaining = try? bakery.orderPastry(item: "Albatross", amountRequested: 1, flavor: "AlbatrossFlavor")
 
 do {
+  try bakery.open(true)
   try bakery.orderPastry(item: "Cookie", amountRequested: 1, flavor: "ChocolateChip")
 }
 catch {
   fatalError()
 }
 
+try! bakery.open(true)
 try! bakery.orderPastry(item: "Cookie", amountRequested: 1, flavor: "ChocolateChip")
