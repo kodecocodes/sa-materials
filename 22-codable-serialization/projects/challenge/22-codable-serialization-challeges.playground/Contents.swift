@@ -38,10 +38,10 @@ import Foundation
  ```swift
  struct Spaceship {
    var name: String
-   var crew: [Spaceman]
+   var crew: [CrewMember]
  }
 
- struct Spaceman {
+ struct CrewMember {
    var name: String
    var race: String
  }
@@ -50,10 +50,10 @@ import Foundation
 
 struct Spaceship: Codable {
   var name: String
-  var crew: [Spaceman]
+  var crew: [CrewMember]
 }
 
-struct Spaceman: Codable {
+struct CrewMember: Codable {
   var name: String
   var race: String
 }
@@ -97,8 +97,8 @@ extension Spaceship {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     name = try values.decode(String.self, forKey: .name)
     let crewValues = try decoder.container(keyedBy: CrewKeys.self)
-    let captain = try crewValues.decodeIfPresent(Spaceman.self, forKey: .captain)
-    let officer = try crewValues.decodeIfPresent(Spaceman.self, forKey: .officer)
+    let captain = try crewValues.decodeIfPresent(CrewMember.self, forKey: .captain)
+    let officer = try crewValues.decodeIfPresent(CrewMember.self, forKey: .officer)
     crew = [captain, officer].compactMap { $0 }
   }
 }
