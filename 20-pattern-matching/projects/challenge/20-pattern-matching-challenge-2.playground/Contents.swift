@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -32,19 +32,19 @@
  Given this code, find the planets with liquid water using a `for` loop:
  
  ```swift
- enum CelestialBody {
-   case star
-   case planet(liquidWater: Bool)
-   case comet
- }
+ /// enum CelestialBody {
+ ///   case star
+ ///   case planet(liquidWater: Bool)
+ ///   case comet
+ /// }
  
- let telescopeCensus = [
-   CelestialBody.star,
-   .planet(liquidWater: false),
-   .planet(liquidWater: true),
-   .planet(liquidWater: true),
-   .comet
- ]
+ /// let telescopeCensus = [
+ /// CelestialBody.star,
+ /// .planet(liquidWater: false),
+ /// .planet(liquidWater: true),
+ /// .planet(liquidWater: true),
+ /// .comet
+ /// ]
  ```
  
  

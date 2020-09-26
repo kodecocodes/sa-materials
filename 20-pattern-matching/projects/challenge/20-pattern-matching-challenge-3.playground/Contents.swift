@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -32,12 +32,12 @@
  Given this code, find the albums that were released in 1974 with a `for` loop:
  
  ```swift
- let queenAlbums = [ 
-   ("A Night at the Opera", 1974),
-   ("Sheer Heart Attack", 1974),
-   ("Jazz", 1978),
-   ("The Game", 1980)
- ]
+ /// let queenAlbums = [
+ ///    ("A Night at the Opera", 1974),
+ ///    ("Sheer Heart Attack", 1974),
+ ///    ("Jazz", 1978),
+ ///    ("The Game", 1980)
+ /// ]
  ```
  */
 let queenAlbums = [

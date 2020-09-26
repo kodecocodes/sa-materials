@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -31,10 +31,10 @@
  Given this code, write a `switch` statement that will print out whether the monument is located in the northern hemisphere, the southern hemisphere, or on the equator.
  
  ```swift
- let coordinates = (lat: 192.89483, long: -68.887463)
+ /// let coordinates = (lat: 37.334890, long: -122.009000)
  ```
  */
-let coordinates = (lat: 192.89483, long: -68.887463)
+let coordinates = (lat: 37.334890, long: -122.009000)
 
 switch coordinates {
 case (let lat, _) where lat < 0:

@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -32,14 +32,14 @@
  Given this code, write an `if` statement that shows an error if the user is not yet 21 years old:
  
  ```swift
- enum FormField {
-   case firstName(String)
-   case lastName(String)
-   case emailAddress(String)
-   case age(Int)
- }
- let minimumAge = 21
- let submittedAge = FormField.age(22)
+ /// enum FormField {
+ ///   case firstName(String)
+ ///   case lastName(String)
+ ///   case emailAddress(String)
+ ///   case age(Int)
+ /// }
+ /// let minimumAge = 21
+ /// let submittedAge = FormField.age(22)
  ```
  */
 enum FormField {
