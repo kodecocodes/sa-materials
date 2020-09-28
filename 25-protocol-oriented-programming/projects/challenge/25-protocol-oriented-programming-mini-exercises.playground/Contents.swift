@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,16 +29,15 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-
 /*:
-Write a default implementation on `CustomStringConvertible` that will simply remind you to implement `description` by returning `Remember to implement CustomStringConvertible!`.
+ Write a default implementation on `CustomStringConvertible` that will simply remind you to implement `description` by returning `Remember to implement CustomStringConvertible!`.
 
-In other words, once you have your default implementation, you should be able to write code like this:
+ In other words, once you have your default implementation, you should be able to write code like this:
 
-    struct MyStruct: CustomStringConvertible {}
-    print(MyStruct())
-    // should print "Remember to implement CustomStringConvertible!"
-*/
+struct MyStruct: CustomStringConvertible {}
+print(MyStruct())
+// should print "Remember to implement CustomStringConvertible!"
+ */
 extension CustomStringConvertible {
   var description: String {
     "Remember to implement CustomStringConvertible!"
@@ -62,7 +65,7 @@ extension CustomStringConvertible where Self: TeamRecord {
 struct BaseballRecord: TeamRecord {
   var wins: Int
   var losses: Int
-  
+
   var winningPercentage: Double {
     Double(wins) / Double(wins + losses)
   }

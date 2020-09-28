@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,26 +31,25 @@
 /// THE SOFTWARE.
 
 import Foundation
-/*: 
+/*:
  ## Protocol Oriented Programming
  ### Challenge 1: Protocol extension practice
  Suppose you own a retail store. You have food items, clothes and electronics. Begin with an `Item` protocol:
  
- ```swift
- protocol Item {
-   var name: String { get }
-   var clearance: Bool { get }
-   var msrp: Double { get }
-   var totalPrice: Double { get }
- }
- ```
+```swift
+protocol Item {
+  var name: String { get }
+  var clearance: Bool { get }
+  var msrp: Double { get }
+  var totalPrice: Double { get }
+}
+```
  
  Fulfill the following requirements using primarily what you’ve learned about protocol-oriented programming. In other words, minimize the code in your classes, structs or enums.
  
  * Clothes do not have sales tax, but all other items have 7.5% sales tax.
  * When on clearance, food items are discounted 50%, clothes are discounted 25% and electronics are discounted 5%.
  * Items should implement `CustomStringConvertible` and return `name`. Food items should also print their expiration dates.
-
  */
 protocol Item: CustomStringConvertible {
   var name: String { get }
@@ -109,7 +112,7 @@ struct Electronics: Taxable, Discountable {
   var clearance: Bool
 
   let taxPercentage = 0.075
-  
+
   var adjustedMsrp: Double {
     msrp * (clearance ? 0.95 : 1.0)
   }
@@ -122,7 +125,7 @@ struct Food: Taxable {
   let expirationDate: (month: Int, year: Int)
 
   let taxPercentage = 0.075
-  
+
   var adjustedMsrp: Double {
     msrp * (clearance ? 0.50 : 1.0)
   }
@@ -141,7 +144,6 @@ Electronics(name: "Apple TV 3rd gen", msrp: 99.99, clearance: true).totalPrice
 // Custom string convertible demonstration
 Food(name: "Bread", msrp: 2.99, clearance: false, expirationDate: (11, 2016))
 Electronics(name: "Apple TV 3rd gen", msrp: 99.99, clearance: true)
-
 /*:
  ### Challenge 2: Doubling values
  
@@ -151,14 +153,11 @@ Electronics(name: "Apple TV 3rd gen", msrp: 99.99, clearance: true)
  
  * Numeric values implement the protocol `Numeric`.
  * Your method signature should be `double() -> [Element]`. The type `[Element]` is an array of whatever type the `Sequence` holds, such as `String` or `Int`.
-*/
-
-
-
+ */
 extension Sequence where Element: Numeric {
-    func double() -> [Element] {
-      self.map { $0 * 2 }
-    }
+  func double() -> [Element] {
+    self.map { $0 * 2 }
+  }
 }
 
 [10, 11, 12, 13, 14, 15].double()
