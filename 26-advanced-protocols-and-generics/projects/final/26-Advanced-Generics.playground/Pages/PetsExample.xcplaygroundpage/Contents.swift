@@ -30,62 +30,19 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-protocol Product {
-  init()
+import Foundation
+
+protocol Pet {
+  var name: String { get }
 }
 
-protocol ProductionLine {
-  associatedtype ProductType
-  func produce() -> ProductType
+//protocol Pet {
+//  associatedtype Food
+//  var name: String { get }
+//}
+
+struct Cat: Pet {
+  var name: String
 }
 
-protocol Factory {
-  associatedtype ProductType
-  var warehouse: [ProductType] { get }
-  func produce()
-  func addProductionLine()
-}
-
-struct Car: Product {
-  init() {
-    print("Producing one awesome Car 🚔")
-  }
-}
-
-struct Chocolate: Product{
-  init() {
-    print("Producing one Chocolate bar 🍫")
-  }
-}
-
-struct GenericProductionLine<T: Product>: ProductionLine {
-  func produce() -> T {
-    T()
-  }
-}
-
-class GenericFactory<T: Product>: Factory {
-  
-  var warehouse: [T] = []
-  var productionLines: [GenericProductionLine<T>] = []
-  
-  func produce() {
-    var newItems: [T] = []
-    productionLines.forEach { newItems.append($0.produce()) }
-    print("Finished Production")
-    print("-------------------")
-    warehouse.append(contentsOf: newItems)
-  }
-  
-  func addProductionLine() {
-    productionLines.append(GenericProductionLine<T>())
-  }
-}
-
-let chocolateFactory = GenericFactory<Chocolate>()
-chocolateFactory.addProductionLine()
-chocolateFactory.produce()
-chocolateFactory.warehouse.count
-chocolateFactory.addProductionLine()
-chocolateFactory.produce()
-chocolateFactory.warehouse.count
+var somePet: Pet = Cat(name: "Whiskers")

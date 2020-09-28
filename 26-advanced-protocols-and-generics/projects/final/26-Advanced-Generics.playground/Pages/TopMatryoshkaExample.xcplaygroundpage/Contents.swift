@@ -30,62 +30,46 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-protocol Product {
+
+import Foundation
+
+protocol DollMaterial{
   init()
 }
 
-protocol ProductionLine {
-  associatedtype ProductType
-  func produce() -> ProductType
+struct Wood: DollMaterial {}
+struct Plastic: DollMaterial {}
+
+protocol Matryoshka {
+  associatedtype Material: DollMaterial
+
+  associatedtype Inside: Matryoshka
+//  where Self.Material == Self.Inside.Material,
+//    Self.Inside == Self.Inside.Inside
+//  , Self == Self.Inside
+
+  var material: Material {get set}
+  var inside: Inside? {get set}
 }
 
-protocol Factory {
-  associatedtype ProductType
-  var warehouse: [ProductType] { get }
-  func produce()
-  func addProductionLine()
+struct TopMatryoshka<Material: DollMaterial>: Matryoshka {
+  var material: Material = Material()
+  var inside: InsideMatryoshka<Material>?
+  var armSize = 4
+  var polish = "Glossy"
 }
 
-struct Car: Product {
-  init() {
-    print("Producing one awesome Car 🚔")
-  }
+class InsideMatryoshka<Material: DollMaterial>: Matryoshka {
+  var material: Material = Material()
+  var inside: InsideMatryoshka?
 }
 
-struct Chocolate: Product{
-  init() {
-    print("Producing one Chocolate bar 🍫")
-  }
-}
+var topDoll = TopMatryoshka<Plastic>()
+var insideDoll1 = InsideMatryoshka<Plastic>()
+var insideDoll2 = InsideMatryoshka<Plastic>()
+var insideDoll3 = InsideMatryoshka<Wood>()
 
-struct GenericProductionLine<T: Product>: ProductionLine {
-  func produce() -> T {
-    T()
-  }
-}
+topDoll.inside = insideDoll1
+insideDoll1.inside = insideDoll2
+//insideDoll2.inside = insideDoll3 //Error
 
-class GenericFactory<T: Product>: Factory {
-  
-  var warehouse: [T] = []
-  var productionLines: [GenericProductionLine<T>] = []
-  
-  func produce() {
-    var newItems: [T] = []
-    productionLines.forEach { newItems.append($0.produce()) }
-    print("Finished Production")
-    print("-------------------")
-    warehouse.append(contentsOf: newItems)
-  }
-  
-  func addProductionLine() {
-    productionLines.append(GenericProductionLine<T>())
-  }
-}
-
-let chocolateFactory = GenericFactory<Chocolate>()
-chocolateFactory.addProductionLine()
-chocolateFactory.produce()
-chocolateFactory.warehouse.count
-chocolateFactory.addProductionLine()
-chocolateFactory.produce()
-chocolateFactory.warehouse.count
