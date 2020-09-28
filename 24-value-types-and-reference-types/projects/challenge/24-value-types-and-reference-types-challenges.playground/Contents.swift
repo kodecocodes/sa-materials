@@ -34,9 +34,9 @@ import Foundation
  ## Value Types and Reference Types Challenges
  ### Challenge 1: Image with value semantics
  
- Build a new type, `Image`, that represents a simple image. It should also provide mutating functions that apply modifications to the image. Use copy-on-write to economize use of memory in the case where a user defines a large array of these identical images, and does not mutate any of them.
- 
- To get you started, assume you are using the following Pixels class for the raw storage.
+ Build a new type, `Image`, that represents a simple image. It should also provide mutating functions that apply modifications to the image. Use copy-on-write to economize the use of memory when a user defines a large array of these identical images and doesn’t mutate any of them.
+
+ To get started, assume you’re using the following Pixels class for the raw storage:
  
  ```swift
  private class Pixels {
@@ -70,8 +70,8 @@ import Foundation
  }
  ```
  
- Your image should be able to set and get individual pixel values as well as set all the values at once. Typical usage:
- 
+ Your image should be able to set and get individual pixel values and set all values at once. Typical usage:
+
  ```swift
  var image1 = Image(width: 4, height: 4, value: 0)
  
@@ -182,20 +182,18 @@ image2[0,0] // -> 100 thanks again, copy-on-write
 /*: 
  ### Challenge 2: Enhancing `UIImage`
  
- If you were Apple and wanted to modify `UIImage` to replace it with a value type that had the mutating functions described above, could you do this in a way that is backward compatible with code which uses the existing `UIImage` API?
+ Pretend you’re Apple and want to modify `UIImage` to replace it with a value type with the mutating functions described above. Could you do make it backward compatible with code that uses the existing `UIImage` API?
  */
 // Yes. Because UIImage is already immutable, it already has value semantics.  Using a copy-on-write implementation you could introduce mutating methods while preserving value semantics. Since adding mutability to its API would only be adding new behaviors, rather than modifying existing ones, this would be backward-compatible with existing use sites.
 
 /*:
  ### Challenge 3: Generic property wrapper for CopyOnWrite
 
- Consider the property wrapper `CopyOnWriteColor` you defined in this chapter. It lets you wrap any variable of type `Color` and it manages the sharing of an underlying storage type, `Bucket`, which own a single `Color` instance. Thanks to structural sharing, multiple `CopyOnWriteColor` instances might share the same `Bucket` instance, thus sharing its `Color` instance, thus saving memory.
+ Consider the property wrapper `CopyOnWriteColor` you defined in this chapter. It lets you wrap any variable of type `Color`, and it manages the sharing of an underlying storage type, `Bucket`, which owns a single `Color` instance. Thanks to structural sharing, multiple `CopyOnWriteColor` instances might share the same `Bucket` instance, thus sharing its `Color` instance, thus saving memory.
 
- That property wrapper was only good for `Color` properties stored in a `Bucket` type. But the basic idea is more general, and depends on two key facts. First, that the wrapped value type, `Color`, already has value semantics — this fact is what ensured that assigning `Color` values into `Bucket`s did not produce unintended sharing at the level of `Color` type itself. Second, that `Bucket` itself has reference semantics — this fact is what allows us to use it as the instance which may be structurally shared across instances of whatever type contains the wrapped property, e.g., `PaintingPlan`s. That is, for the purposes of implementing the copy-on-write logic, what matters about `Bucket` is not its domain semantics (like `isRefilled`) but just that it is a reference type. You only used it as a _box_ for the `Color` value.
+  That property wrapper was only suitable for `Color` properties stored in a `Bucket` type. But the idea is more general and depends on two key facts. First, that the wrapped value type, `Color`, already has value semantics — this fact is what ensured that assigning `Color` values into `Bucket`s did not produce unintended sharing at the level of `Color` type itself. Second, that `Bucket` itself has reference semantics — this fact is what allows us to use it as the instance which may be structurally shared across instances of whatever type contains the wrapped property, e.g., `PaintingPlan`s. To implement the copy-on-write logic, what matters about `Bucket` is not its domain semantics (like `isRefilled`) but just that it is a reference type. You only used it as a _box_ for the `Color` value.
 
- Since property wrappers can be generic, you can define a _generic_ copy-on-write property property wrapper type, `CopyOnWrite`. Instead of being able to wrap only `Color` values, it should be generic over any value semantic that it wraps. And so instead of using a dedicated storage type like `Bucket`, it should provide its own box type to act as storage.
-
- Your challenge: write the definition for this generic type, `CopyOnWrite`, and use it in an example to verify that the wrapped properties preserve the value semantics of the original type. To get you started, here is a suitable definition of a box type:
+  Since property wrappers can be generic, you can define a _generic_ copy-on-write property wrapper type, `CopyOnWrite`. Instead of being able to wrap only `Color` values, it should be generic over any value semantic that it wraps. Instead of using a dedicated storage type like `Bucket`, it should provide its own box type to act as storage. Your challenge: write the definition for this generic type, `CopyOnWrite`, and use it in an example to verify that the wrapped properties preserve the value semantics of the original type. To get you started, here is a suitable definition of a box type:
  */
 private class StorageBox<StoredValue> {
   var value: StoredValue
@@ -257,22 +255,6 @@ In practice, the main value of an explicit implementation, like the one above, i
 */
 
 /*
-
- ### Challenge 4: Determining if a type has value semantics
-
-The last challenged developed a property wrapper `@CopyOnWrite`, which provides the copy-on-write optimization for types which are already value semantic. As discussed, this only lets you reproduce explicitly the storage optimization which the language runtime might be providing you under the hood. It does not _modify the semantics_ of assignment to that property.
-
- What is likely to be more useful is to have a property wrapper, `@ValueSemantics`,  that let you take an existing property of a type which currently does _not_ have value semantics, and to turn it into a property which _does_ have value semantics (using copy-on-write optimization to do so efficiently). Endowing the property with value semantics -- not copy-on-write as such -- is what provides the immunity from side effects, the important thing for a safer programming model.
-
- The key difference in a property wrapper that does work (versus `@CopyOnWrite` wrapper above), is that it will need to be generic over types _which might not currently offer value semantics_ like plain old mutable reference type and even value types which contain such reference types. Since you can no longer rely on assignment to do a deep copy of such a type you will need to _require_ that the type itself know how to do a deep copy of itself in order to be used by this property wrapper.
-
- This requirement can be established by requiring the type to conform to the following protocol:
-
- */
-
-
-/*
- 
  ### Challenge 4: Implement @ValueSemantic
 
  Using the following protocol `DeepCopyable` as a constraint, write the definition for this generic property wrapper type, `@ValueSemantic`, and use it in an example to verify that the wrapped properties have value semantics, even when they are wrapping an underlying type which does not. Use `NSMutableString` is an example of a non-value semantic type.
@@ -366,8 +348,6 @@ do {
   print(b.x) // => "hello" // good, no side-effects
 
 }
-
-
 /*:
  ### Challenge 5
  
