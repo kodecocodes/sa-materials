@@ -30,8 +30,63 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+protocol Pet {
+  var name: String { get }
+}
+struct Cat: Pet {
+  var name: String
+}
 
+var somePet: Pet = Cat(name: "Whiskers")
+
+//protocol Pet {
+//  associatedtype Food
+//  var name: String { get }
+//}
+
+//protocol WeightCalculatable {
+//  associatedtype WeightType
+//  var weight: WeightType { get }
+//}
+
+class Truck: WeightCalculatable {
+  // This heavy thing only needs integer accuracy
+  typealias WeightType = Int
+
+  var weight: Int {
+    100
+  }
+}
+
+class Flower: WeightCalculatable {
+  // This light thing needs decimal places
+  typealias WeightType = Double
+
+  var weight: Double {
+    0.0025
+  }
+}
+
+//class StringWeightThing: WeightCalculatable {
+//  typealias WeightType = String
+//
+//  var weight: String {
+//    "That doesn't make sense"
+//  }
+//}
+
+//class CatWeightThing: WeightCalculatable {
+//  typealias WeightType = Cat
+//
+//  var weight: Cat {
+//    Cat(name: "What is this cat doing here?")
+//  }
+//}
+
+protocol WeightCalculatable {
+  associatedtype WeightType: Numeric
+  var weight: WeightType { get }
+}
 
 //protocol Product {}
 //
@@ -45,23 +100,25 @@ import Foundation
 //
 //extension Factory {
 //  func produce() -> [Product] {
-//  var items: [Product] = []
-//  productionLines.forEach { items.append($0.produce()) }
-//  print("Finished Production")
-//  print("-------------------")
-//  return items
+//    var items: [Product] = []
+//    productionLines.forEach { items.append($0.produce()) }
+//    print("Finished Production")
+//    print("-------------------")
+//    return items
 //  }
 //}
 //
-//struct Car: Product {
-//  init() {
-//  print("Producing one awesome Car 🚔")
-//  }
-//}
+
+
+struct Car: Product {
+  init() {
+    print("Producing one awesome Car 🚔")
+  }
+}
 //
 //struct CarProductionLine: ProductionLine {
 //  func produce() -> Product {
-//  Car()
+//    Car()
 //  }
 //}
 //
@@ -75,16 +132,16 @@ import Foundation
 //
 //struct Chocolate: Product {
 //  init() {
-//  print("Producing one chocolate bar 🍫")
+//    print("Producing one chocolate bar 🍫")
 //  }
 //}
 //
 //struct ChocolateProductionLine: ProductionLine {
 //  func produce() -> Product {
-//  Chocolate()
+//    Chocolate()
 //  }
 //}
-//
+
 //var oddCarFactory = CarFactory()
 //oddCarFactory.productionLines = [CarProductionLine(), ChocolateProductionLine()]
 //oddCarFactory.produce()
@@ -101,18 +158,6 @@ protocol ProductionLine {
 protocol Factory {
   associatedtype ProductType
   func produce() -> [ProductType]
-}
-
-struct Car: Product {
-  init() {
-    print("Producing one awesome Car 🚔")
-  }
-}
-
-struct Chocolate: Product{
-  init() {
-    print("Producing one Chocolate bar 🍫")
-  }
 }
 
 struct GenericProductionLine<P: Product>: ProductionLine {
@@ -137,26 +182,52 @@ var carFactory = GenericFactory<Car>()
 carFactory.productionLines = [GenericProductionLine<Car>(), GenericProductionLine<Car>()]
 carFactory.produce()
 
-var chocolateFactory = GenericFactory<Chocolate>()
-chocolateFactory.productionLines = [GenericProductionLine<Chocolate>(), GenericProductionLine<Chocolate>()]
-chocolateFactory.produce()
+// MARK: -
 
+let array = Array(1...10)
+let set = Set(1...10)
+let reversedArray = array.reversed()
 
-func makeFactory(numberOfLines: Int) -> some Factory {
-  var factory = GenericFactory<Car>()
-  for _ in 0..<numberOfLines {
-    factory.productionLines.append(GenericProductionLine<Car>())
+for e in reversedArray {
+ print(e)
+}
+
+let arrayCollections = [array, Array(set), Array(reversedArray)]
+
+let collections = [AnyCollection(array),
+                   AnyCollection(set),
+                   AnyCollection(array.reversed())]
+
+let total = collections.flatMap { $0 }.reduce(0, +) // 165
+
+func makeValue() -> some FixedWidthInteger {
+  42
+}
+
+print("Two makeVales summed", makeValue() + makeValue())
+
+func makeValueRandomly() -> some FixedWidthInteger {
+  if Bool.random() {
+    return Int(42)
   }
-  return factory
+  else {
+    // return Int8(24) // Compiler error.  All paths must return same type.
+    return Int(24)
+  }
 }
 
-func makeEquatableNumeric() -> some Numeric & Equatable {
-  return 1
-}
+// let v: FixedWidthInteger = 42 // compiler error
+let v = makeValue() // works
 
-let someVar = makeEquatableNumeric()
-let someVar2 = makeEquatableNumeric()
+func makeEquatableNumericInt() -> some Numeric & Equatable { 1 }
+func makeEquatableNumericDouble() -> some Numeric & Equatable { 1.0 }
 
-print(someVar == someVar2)
-print(someVar + someVar2)
-//print(someVar > someVar2) // error
+let value1 = makeEquatableNumericInt()
+let value2 = makeEquatableNumericInt()
+
+print(value1 == value2) // prints true
+print(value1 + value2) // prints 2
+// print(value1 > value2) // error
+
+// Compiler error, types don't match up
+// makeEquatableNumericInt() == makeEquatableNumericDouble()

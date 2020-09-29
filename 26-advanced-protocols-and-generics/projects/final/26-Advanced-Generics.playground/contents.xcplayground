@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios'>
-    <pages>
-        <page name='PetsExample'/>
-        <page name='WeightsExample'/>
-        <page name='FactoryExample'/>
-        <page name='MatryoshkaExample'/>
-        <page name='TopMatryoshkaExample'/>
-    </pages>
+<playground version='5.0' target-platform='ios'>
+    <timeline fileName='timeline.xctimeline'/>
 </playground>
