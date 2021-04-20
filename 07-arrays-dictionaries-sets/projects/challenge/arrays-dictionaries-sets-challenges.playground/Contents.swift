@@ -126,10 +126,15 @@ func reversed(_ array: [Int]) -> [Int] {
 */
 
 func middle(_ array: [Int]) -> Int? {
-  guard !array.isEmpty else {
-    return nil
-  }
-  return array[array.count/2]
+    guard !array.isEmpty else {
+        return nil
+    }
+    if array.count % 2 == 0{
+        return array[(array.count/2)-1]
+    }
+    else{
+        return array[(array.count/2)]
+    }
 }
 
 /*:
