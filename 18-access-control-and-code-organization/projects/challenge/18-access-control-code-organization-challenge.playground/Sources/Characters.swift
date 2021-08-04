@@ -34,7 +34,7 @@ public enum GameCharacterType {
   case elf
 }
 
-public protocol GameCharacter: class {
+public protocol GameCharacter: AnyObject {
   var name: String { get }
   var hitPoints: Int { get set }
   var attackPoints: Int { get }
