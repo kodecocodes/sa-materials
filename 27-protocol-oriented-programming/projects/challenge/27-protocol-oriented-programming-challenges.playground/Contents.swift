@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -54,7 +54,7 @@ protocol Item {
 protocol Item: CustomStringConvertible {
   var name: String { get }
   var clearance: Bool { get }
-  var msrp: Double { get } //Manufacturer's Suggested Retail Price
+  var msrp: Double { get } // Manufacturer's Suggested Retail Price
   var totalPrice: Double { get }
 }
 
