@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -33,14 +37,15 @@ func fibonacci(position: Int) -> Int {
   switch position {
   // 1
   case let n where n <= 1:
-return 0 // 2
+    return 0 // 2
   case 2:
     return 1
 // 3
   case let n:
-    return fibonacci(position: n - 1) + fibonacci(position: n -
-2)
-} }
+    return fibonacci(position: n - 1) + fibonacci(position: n - 2)
+  }
+}
+
 let fib15 = fibonacci(position: 15) // 377
 
 for i in 1...100 {
@@ -74,11 +79,12 @@ func ~=(pattern: [Int], value: Int) -> Bool {
   // 2
   for i in pattern {
     if i == value {
-// 3
-return true
-} }
-// 4
-return false
+      // 3
+      return true
+    }
+  }
+  // 4
+  return false
 }
 
 let isInArray = (list ~= integer) // true
