@@ -31,6 +31,7 @@
 import Foundation
 
 /*:
+ ## Property Wrapper Challenges
  ### Challenge 1: Generic property wrapper for CopyOnWrite
 
  Consider the property wrapper `CopyOnWriteColor` you defined in the previous chapter. It lets you wrap any variable of type `Color`, and it manages the sharing of an underlying storage type, `Bucket`, which owns a single `Color` instance. Thanks to structural sharing, multiple `CopyOnWriteColor` instances might share the same `Bucket` instance, thus sharing its `Color` instance, thus saving memory.
