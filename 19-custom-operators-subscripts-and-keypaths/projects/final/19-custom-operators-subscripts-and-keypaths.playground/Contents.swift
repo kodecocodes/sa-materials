@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -99,17 +99,14 @@ class Person {
   }
 }
 
-let me = Person(name: "Cosmin", age: 34)
+let me = Person(name: "Cosmin", age: 36)
 
 extension Person {
   subscript(property key: String) -> String? {
     switch key {
-    case "name":
-      return name
-    case "age":
-      return "\(age)"
-    default:
-      return nil
+      case "name": return name
+      case "age": return "\(age)"
+      default: return nil
     }
   }
 }
@@ -127,10 +124,8 @@ class File {
   
   static subscript(key: String) -> String {
     switch key {
-    case "path":
-      return "custom path"
-    default:
-      return "default path"
+      case "path": return "custom path"
+      default: return "default path"
     }
   }
 }
@@ -152,15 +147,13 @@ class Instrument {
   
   subscript(dynamicMember key: String) -> String {
     switch key {
-      case "info":
-        return "\(brand) made in \(year)."
-      default:
-        return details[key] ?? ""
+      case "info": return "\(brand) made in \(year)."
+      default: return details[key] ?? ""
     }
   }
 }
 
-let instrument = Instrument(brand: "Roland", year: 2019, details: ["type": "acoustic", "pitch": "C"])
+let instrument = Instrument(brand: "Roland", year: 2021, details: ["type": "acoustic", "pitch": "C"])
 instrument.info
 instrument.pitch
 
@@ -168,7 +161,7 @@ instrument.brand
 instrument.year
 
 class Guitar: Instrument {}
-let guitar = Guitar(brand: "Fender", year: 2019, details: ["type": "electric", "pitch": "C"])
+let guitar = Guitar(brand: "Fender", year: 2021, details: ["type": "electric", "pitch": "C"])
 guitar.info
 guitar.dlfksdf
 
@@ -182,10 +175,8 @@ class Folder {
   
   class subscript(dynamicMember key: String) -> String {
     switch key {
-      case "path":
-        return "custom path"
-      default:
-        return "default path"
+      case "path": return "custom path"
+      default: return "default path"
     }
   }
 }
@@ -253,5 +244,10 @@ let center = Point(x: 1, y: 2)
 let circle = Circle(center: center, radius: 1)
 circle.x
 circle.y
+
+let anotherTutorial = Tutorial(title: "Encoding and Decoding in Swift", author: me, details: (type: "Swift", category: "iOS"))
+let tutorials = [tutorial, anotherTutorial]
+let titles = tutorials.map(\.title)
+
 
 
