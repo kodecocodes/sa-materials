@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,84 +30,86 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-enum Direction {
-  case left
-  case right
-  case forward
-}
-
-enum PugBotError: Error {
-  case invalidMove(found: Direction, expected: Direction)
-  case endOfPath
-}
-
-class PugBot {
-  let name: String
-  let correctPath: [Direction]
-  private var currentStepInPath = 0
-    
-  init(name: String, correctPath: [Direction]) {
-    self.correctPath = correctPath
-    self.name = name
-  }
-    
-  func move(_ direction: Direction) throws {
-    guard currentStepInPath < correctPath.count else {
-      throw PugBotError.endOfPath
-    }
-    let nextDirection = correctPath[currentStepInPath]
-    guard nextDirection == direction else {
-      throw PugBotError.invalidMove(found: direction, expected: nextDirection)
-    }
-    currentStepInPath += 1
-  }
+class Person {
+  var name: String
+  var age: Int
   
-  func reset() {
-    currentStepInPath = 0
+  init(name: String, age: Int) {
+    self.name = name
+    self.age = age
   }
 }
 
-let pug = PugBot(name: "Pug", correctPath: [.forward, .left, .forward, .right])
+enum PersonError: Error {
+  case noName, noAge, noData
+}
 
-func goHome() throws {
-  try pug.move(.forward)
-  try pug.move(.left)
-  try pug.move(.forward)
-  try pug.move(.right)
+extension Person {
+  var data: String {
+    get throws {
+      guard !name.isEmpty else {throw PersonError.noName}
+      guard age > 0 else {throw PersonError.noAge}
+      return "\(name) is \(age) years old."
+    }
+  }
+}
+
+let me = Person(name: "Cosmin", age: 36)
+
+me.name = ""
+do {
+  try me.data
+} catch {
+  print(error)
+}
+
+me.age = -36
+do {
+  try me.data
+} catch {
+  print(error)
+}
+
+me.name = "Cosmin"
+do {
+  try me.data
+} catch {
+  print(error)
+}
+
+me.age = 36
+do {
+  try me.data
+} catch {
+  print(error)
+}
+
+extension Person {
+  subscript(key: String) -> String {
+    get throws {
+      switch key {
+        case "name": return name
+        case "age": return "\(age)"
+        default: throw PersonError.noData
+      }
+    }
+  }
 }
 
 do {
-  try goHome()
+  try me["name"]
 } catch {
-  print("PugBot failed to get home.")
+  print(error)
 }
 
-func moveSafely(_ movement: () throws -> ()) -> String {
-  do {
-    try movement()
-    return "Completed operation successfully."
-  } catch PugBotError.invalidMove(let found, let expected) {
-    return "The PugBot was supposed to move \(expected), but moved \(found) instead."
-  } catch PugBotError.endOfPath {
-    return "The PugBot tried to move past the end of the path."
-  } catch {
-    return "An unknown error occurred."
-  }
+do {
+  try me["age"]
+} catch {
+  print(error)
 }
 
-pug.reset()
-moveSafely(goHome)
-
-pug.reset()
-moveSafely {
-  try pug.move(.forward)
-  try pug.move(.left)
-  try pug.move(.forward)
-  try pug.move(.right)
-}
-
-func perform(times: Int, movement: () throws -> ()) rethrows {
-  for _ in 1...times {
-    try movement()
-  }
+do {
+  try me["gender"]
+} catch {
+  print(error)
 }

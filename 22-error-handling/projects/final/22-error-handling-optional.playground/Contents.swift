@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -87,15 +87,11 @@ if let dogBreed = janie.pet.breed {
 class Toy {
     
   enum Kind {
-    case ball
-    case zombie
-    case bone
-    case mouse
+    case ball, zombie, bone, mouse
   }
     
   enum Sound {
-    case squeak
-    case bell
+    case squeak, bell
   }
     
   let kind: Kind
@@ -112,9 +108,7 @@ class Toy {
 class Pet {
     
   enum Kind {
-    case dog
-    case cat
-    case guineaPig
+    case dog, cat, guineaPig
   }
     
   let name: String

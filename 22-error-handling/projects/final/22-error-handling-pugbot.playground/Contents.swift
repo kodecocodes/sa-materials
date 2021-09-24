@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,67 +30,82 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-
-import Foundation
-
-func log(message: String) {
-  let thread = Thread.current.isMainThread ? "Main" : "Background"
-  print("\(thread) thread: \(message).")
+enum Direction {
+  case left, right, forward
 }
 
-func addNumbers(upTo range: Int) -> Int {
-  log(message: "Adding numbers...")
-  return (1...range).reduce(0, +)
+enum PugBotError: Error {
+  case invalidMove(found: Direction, expected: Direction)
+  case endOfPath
 }
 
-let queue = DispatchQueue(label: "queue")
-
-func execute<Result>(backgroundWork: @escaping () -> Result, mainWork: @escaping (Result) -> ()) {
-  queue.async {
-    let result = backgroundWork()
-    DispatchQueue.main.async {
-      mainWork(result)
+class PugBot {
+  let name: String
+  let correctPath: [Direction]
+  private var currentStepInPath = 0
+    
+  init(name: String, correctPath: [Direction]) {
+    self.correctPath = correctPath
+    self.name = name
+  }
+    
+  func move(_ direction: Direction) throws {
+    guard currentStepInPath < correctPath.count else {
+      throw PugBotError.endOfPath
     }
+    let nextDirection = correctPath[currentStepInPath]
+    guard nextDirection == direction else {
+      throw PugBotError.invalidMove(found: direction, expected: nextDirection)
+    }
+    currentStepInPath += 1
+  }
+  
+  func reset() {
+    currentStepInPath = 0
   }
 }
 
-execute(backgroundWork: { addNumbers(upTo: 100) }, mainWork:  { log(message: "The sum is \($0)") })
+let pug = PugBot(name: "Pug", correctPath: [.forward, .left, .forward, .right])
 
-struct Tutorial {
-  let title: String
-  let author: String
+func goHome() throws {
+  try pug.move(.forward)
+  try pug.move(.left)
+  try pug.move(.forward)
+  try pug.move(.right)
 }
 
-enum TutorialError: Error {
-  case rejected
-}
-
-func feedback(for tutorial: Tutorial) -> Result<String, TutorialError> {
-  Bool.random() ? .success("published") : .failure(.rejected)
-}
-
-func edit(_ tutorial: Tutorial) {
-  queue.async {
-    let result = feedback(for: tutorial)
-    DispatchQueue.main.async {
-      switch result {
-        case let .success(data):
-          print("\(tutorial.title) by \(tutorial.author) was \(data) on the website.")
-        case let .failure(error):
-          print("\(tutorial.title) by \(tutorial.author) was \(error).")
-      }
-    }
-  }
-}
-
-let tutorial = Tutorial(title: "What's new in Swift 5.1", author: "Cosmin Pupăză")
-edit(tutorial)
-
-let result = feedback(for: tutorial)
 do {
-  let data = try result.get()
-  print("\(tutorial.title) by \(tutorial.author) was \(data) on the website.")
+  try goHome()
 } catch {
-  print("\(tutorial.title) by \(tutorial.author) was \(error).")
+  print("PugBot failed to get home.")
 }
 
+func moveSafely(_ movement: () throws -> ()) -> String {
+  do {
+    try movement()
+    return "Completed operation successfully."
+  } catch PugBotError.invalidMove(let found, let expected) {
+    return "The PugBot was supposed to move \(expected), but moved \(found) instead."
+  } catch PugBotError.endOfPath {
+    return "The PugBot tried to move past the end of the path."
+  } catch {
+    return "An unknown error occurred."
+  }
+}
+
+pug.reset()
+moveSafely(goHome)
+
+pug.reset()
+moveSafely {
+  try pug.move(.forward)
+  try pug.move(.left)
+  try pug.move(.forward)
+  try pug.move(.right)
+}
+
+func perform(times: Int, movement: () throws -> ()) rethrows {
+  for _ in 1...times {
+    try movement()
+  }
+}
