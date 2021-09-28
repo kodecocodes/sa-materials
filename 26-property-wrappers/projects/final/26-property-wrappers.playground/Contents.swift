@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2021 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -86,7 +86,7 @@ struct CopyOnWriteColor {
       if isKnownUniquelyReferenced(&bucket) {
         bucket.color = newValue
       } else {
-        bucket = Bucket(color:newValue)
+        bucket = Bucket(color: newValue)
       }
     }
   }
@@ -112,86 +112,60 @@ housePlan.bucketColor = Color.green
 artPlan.bucketColor // blue. good!
 
 // ValidatedDate property wrapper,
-// which requires strings to fit yyyy-mm-dd format
+// which requires strings to fit a specific format
 
 @propertyWrapper
 public struct ValidatedDate {
-  private var storage:Date? = nil
+    
+  private var storage: Date? = nil
   private let formatter = DateFormatter()
 
-  public init(wrappedValue:String) {
-    self.wrappedValue = wrappedValue
+  public init(wrappedValue: String) {
     self.formatter.dateFormat = "yyyy-mm-dd"
+    self.wrappedValue = wrappedValue
   }
 
-  public var wrappedValue:String {
+  public var wrappedValue: String {
     set {
-      self.storage = formatter.date(from:newValue)
+      self.storage = formatter.date(from: newValue)
     }
     get {
-      if let m = self.storage { return formatter.string(from:m) }
-      else { return "invalid" }
+      if let date = self.storage {
+        return formatter.string(from: date)
+      } else {
+        return "invalid"
+      }
+    }
+  }
+  
+  public var projectedValue: String {
+    get {
+      formatter.dateFormat
+    }
+    set {
+      formatter.dateFormat = newValue
     }
   }
 }
 
 struct Order {
-  @ValidatedDate var orderPlacedDate:String = ""
-//  @ValidatedDate var shippingDate:String
-//  @ValidatedDate var deliveredDate:String
+  
+  @ValidatedDate var orderPlacedDate: String = ""
+//  @ValidatedDate var shippingDate: String
+//  @ValidatedDate var deliveredDate: String
 }
 
-// using projected value to change the PW's behavior
-var o1 = Order()
-o1.orderPlacedDate = "2014-06-02" // store a valid date string
-o1.orderPlacedDate // => 2014-06-02
+var order = Order()
+// store a valid date string
+order.orderPlacedDate = "2014-06-02"
+order.orderPlacedDate // => 2014-06-02
 // try to store an invalid date
-o1.orderPlacedDate = "2015-06-50"
+order.orderPlacedDate = "2015-06-50"
 // observe that all you can read back is "invalid"
-o1.orderPlacedDate // => "invalid"
-
-// ValidatedDate2 property wrapper,
-// which lets you configure the enforced date formatting
-
-@propertyWrapper
-public struct ValidatedDate2 {
-
-  private var storage:Date? = nil
-  private let formatter = DateFormatter()
-
-  public init(wrappedValue:String) {
-    self.wrappedValue = wrappedValue
-    self.formatter.dateFormat = "yyyy-mm-dd"
-  }
-
-  public var wrappedValue:String {
-    set {
-      self.storage = formatter.date(from:newValue)
-    }
-    get {
-      if let m = self.storage { return formatter.string(from:m) }
-      else { return "invalid" }
-    }
-  }
-
-  public var projectedValue:String = "yyyy-mm-dd" {
-    didSet {
-      formatter.dateFormat = projectedValue
-    }
-  }
-}
-
-struct Order2 {
-  @ValidatedDate2 var orderPlacedDate:String = ""
-//  @ValidatedDate var shippingDate:String
-//  @ValidatedDate var deliveredDate:String
-}
-
-// using projected value to change the PW's behavior
-var o2 = Order2()
-o1.orderPlacedDate = "2014-06-02" // store a valid date string
-o1.orderPlacedDate // => 2014-06-02
+order.orderPlacedDate // => "invalid"
+order.orderPlacedDate = "2014-06-02"
 // update the date format using the projected value
-o2.$orderPlacedDate = "mm/dd/yyyy"
-o1.orderPlacedDate // => 06/02/2014" // read the string under new wrapping logic
+order.$orderPlacedDate = "mm/dd/yyyy"
+// read the string in the new format
+order.orderPlacedDate // => 06/02/2014"
 

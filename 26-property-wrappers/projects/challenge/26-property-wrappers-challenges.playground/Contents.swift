@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2021 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,6 +41,7 @@ import Foundation
   Since property wrappers can be generic, you can define a _generic_ copy-on-write property wrapper type, `CopyOnWrite`. Instead of being able to wrap only `Color` values, it should be generic over any value semantic that it wraps. Instead of using a dedicated storage type like `Bucket`, it should provide its own box type to act as storage. Your challenge: write the definition for this generic type, `CopyOnWrite`, and use it in an example to verify that the wrapped properties preserve the value semantics of the original type. To get you started, here is a suitable definition of a box type:
  */
 private class StorageBox<StoredValue> {
+  
   var value: StoredValue
 
   init(_ value: StoredValue) {
@@ -48,16 +49,16 @@ private class StorageBox<StoredValue> {
   }
 }
 //: challenge answer:
-
 @propertyWrapper
-  struct CopyOnWrite<T> {
+struct CopyOnWrite<T> {
+  
   private var storage: StorageBox<T>
 
   init(wrappedValue: T) {
     self.storage = StorageBox(wrappedValue)
   }
 
-  var wrappedValue:T {
+  var wrappedValue: T {
     get {
       print("GET")
       return storage.value
@@ -97,14 +98,10 @@ In most cases, they are probably unnecessary. This is because, as was mentioned 
 
 In practice, the main value of an explicit implementation, like the one above, is that you monitor the optimization and be certain it is applied. Swift's automatic copy-on-write behavior is not thoroughly documented, it is subject to its own compiler and runtime optimizations, and is therefore risky to rely on. Second, you would need to write an explicit implementation if you wished to implement much finer-grained structural sharing, for instance copying only mutated _parts_ of an array (which would therefore no longer be guaranteed to be contiguous in memory).
 
-*/
-
-/*
  ### Challenge 2: Implement @ValueSemantic
 
- Using the following protocol `DeepCopyable` as a constraint, write the definition for this generic property wrapper type, `@ValueSemantic`, and use it in an example to verify that the wrapped properties have value semantics, even when they are wrapping an underlying type which does not. Use `NSMutableString` is an example of a non-value semantic type.
+ Using the following protocol `DeepCopyable` as a constraint, write the definition for a generic property wrapper `@ValueSemantic`, and use it in an example to verify that the wrapped properties have value semantics, even when they are wrapping an underlying type which does not. Use `NSMutableString` is an example of a non-value semantic type.
  */
-
 protocol DeepCopyable {
   /*
 
@@ -121,18 +118,17 @@ protocol DeepCopyable {
    */
   func deepCopy() -> Self
 }
-
 //: challenge answer:
-
 @propertyWrapper
-  struct ValueSemantic<T:DeepCopyable> {
+struct ValueSemantic<T: DeepCopyable> {
+  
   private var storage: StorageBox<T>
 
   init(wrappedValue: T) {
     self.storage = StorageBox(wrappedValue)
   }
 
-  var wrappedValue:T {
+  var wrappedValue: T {
     // get could be getting the reference in order to call a mutating method on a reference type,
     // so we need to be defensive and treat this as a mutation of the value of the instance
     mutating get {
@@ -162,15 +158,16 @@ protocol DeepCopyable {
   }
 }
 
-extension NSMutableString : DeepCopyable {
+extension NSMutableString: DeepCopyable {
+  
   func deepCopy() -> Self {
-    return self.mutableCopy() as! Self
+    self.mutableCopy() as! Self
   }
 }
 
 do {
   struct Foo {
-    @ValueSemantic var x = NSMutableString.init(string: "hello")
+    @ValueSemantic var x = NSMutableString(string: "hello")
   }
 
   print("valuesemantics")
@@ -179,7 +176,7 @@ do {
   print(f.x) // => "hello"
   print(g.x) // => "hello"
   // mutate the value of f by mutating the reference x
-  f.x = NSMutableString.init(string: "world")
+  f.x = NSMutableString(string: "world")
   print(f.x) // => "world"
   print(g.x) // => "hello" // good, no side-effects
 
@@ -191,6 +188,4 @@ do {
   a.x.append(" world")
   print(a.x) // => "hello world"
   print(b.x) // => "hello" // good, no side-effects
-
 }
-
