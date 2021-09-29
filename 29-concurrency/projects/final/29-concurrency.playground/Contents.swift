@@ -32,15 +32,15 @@
 
 import UIKit
 
-struct Domains: Codable {
+struct Domains: Decodable {
   let data: [Domain]
 }
 
-struct Domain: Codable {
+struct Domain: Decodable {
   let attributes: Attributes
 }
 
-struct Attributes: Codable {
+struct Attributes: Decodable {
   let name, description, level: String
 }
 
