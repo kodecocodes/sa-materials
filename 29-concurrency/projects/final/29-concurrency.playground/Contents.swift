@@ -41,13 +41,17 @@ struct Domain: Decodable {
 }
 
 struct Attributes: Decodable {
-  let name, description, level: String
+  let name: String
+  let description: String
+  let level: String
 }
 
 let string = "https://api.raywenderlich.com/api/domains"
 let url = URL(string: string)!
-let task = URLSession.shared.dataTask(with: url) {data, response, error in
-  guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200, let data = data else {
+let task = URLSession.shared.dataTask(with: url) { data, response, error in
+  guard let httpResponse = response as? HTTPURLResponse,
+        httpResponse.statusCode == 200,
+        let data = data else {
     print(error ?? "Unknown error")
     return
   }
@@ -66,7 +70,10 @@ task.resume()
 Task {
   do {
     let (data, response) = try await URLSession.shared.data(from: url)
-    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {return}
+    guard let httpResponse = response as? HTTPURLResponse,
+          httpResponse.statusCode == 200 else {
+      return
+    }
     let domains = try JSONDecoder().decode(Domains.self, from: data)
     for domain in domains.data {
       let attributes = domain.attributes
@@ -80,7 +87,10 @@ Task {
 Task {
   do {
     let (bytes, response) = try await URLSession.shared.bytes(from: url)
-    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {return}
+    guard let httpResponse = response as? HTTPURLResponse,
+          httpResponse.statusCode == 200 else {
+      return
+    }
     var data = Data()
     for try await byte in bytes {
       data.append(byte)
@@ -95,81 +105,27 @@ Task {
   }
 }
 
-Task {
-  do {
-    let (bytes, response) = try await URLSession.shared.bytes(from: url)
-    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {return}
-    var string = ""
-    for try await line in bytes.lines {
-      string.append(line)
-    }
-    let data = Data(string.utf8)
-    let domains = try JSONDecoder().decode(Domains.self, from: data)
-    for domain in domains.data {
-      let attributes = domain.attributes
-      print("\(attributes.name): \(attributes.description) - \(attributes.level)")
-    }
-  } catch {
-    print(error)
-  }
-}
-
-Task {
-  do {
-    let (bytes, response) = try await URLSession.shared.bytes(from: url)
-    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {return}
-    var string = ""
-    for try await character in bytes.characters {
-      string.append(character)
-    }
-    let data = Data(string.utf8)
-    let domains = try JSONDecoder().decode(Domains.self, from: data)
-    for domain in domains.data {
-      let attributes = domain.attributes
-      print("\(attributes.name): \(attributes.description) - \(attributes.level)")
-    }
-  } catch {
-    print(error)
-  }
-}
-
-Task {
-  do {
-    let (bytes, response) = try await URLSession.shared.bytes(from: url)
-    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {return}
-    var string = ""
-    for try await scalar in bytes.unicodeScalars {
-      let scalarString = String(scalar)
-      string.append(scalarString)
-    }
-    let data = Data(string.utf8)
-    let domains = try JSONDecoder().decode(Domains.self, from: data)
-    for domain in domains.data {
-      let attributes = domain.attributes
-      print("\(attributes.name): \(attributes.description) - \(attributes.level)")
-    }
-  } catch {
-    print(error)
-  }
-}
-
-Task {
-  do {
-    async let (data, response) = URLSession.shared.data(from: url)
-    guard let httpResponse = try await response as? HTTPURLResponse, httpResponse.statusCode == 200 else {return}
-    let domains = try JSONDecoder().decode(Domains.self, from: await data)
-    for domain in domains.data {
-      let attributes = domain.attributes
-      print("\(attributes.name): \(attributes.description) - \(attributes.level)")
-    }
-  } catch {
-    print(error)
-  }
-}
+// [TODO from TE]: See note in the main text.
+//Task {
+//  do {
+//    async let (data, response) = URLSession.shared.data(from: url)
+//    guard let httpResponse = try await response as? HTTPURLResponse, httpResponse.statusCode == 200 else {return}
+//    let domains = try JSONDecoder().decode(Domains.self, from: await data)
+//    for domain in domains.data {
+//      let attributes = domain.attributes
+//      print("\(attributes.name): \(attributes.description) - \(attributes.level)")
+//    }
+//  } catch {
+//    print(error)
+//  }
+//}
 
 func fetchDomains(for url: URL) async throws {
   let (data, response) = try await URLSession.shared.data(from: url)
-  guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {return}
+  guard let httpResponse = response as? HTTPURLResponse,
+        httpResponse.statusCode == 200 else {
+    return
+  }
   let domains = try JSONDecoder().decode(Domains.self, from: data)
   for domain in domains.data {
     let attributes = domain.attributes
@@ -177,7 +133,7 @@ func fetchDomains(for url: URL) async throws {
   }
 }
 
-Task{
+Task {
   do {
     try await fetchDomains(for: url)
   } catch {
@@ -186,10 +142,14 @@ Task{
 }
 
 extension Domains {
+
   static var domains: Domains? {
     get async throws {
       let (data, response) = try await URLSession.shared.data(from: url)
-      guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {return nil}
+      guard let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode == 200 else {
+        return nil
+      }
       let domains = try JSONDecoder().decode(Domains.self, from: data)
       return domains
     }
@@ -210,17 +170,26 @@ Task {
 }
 
 extension Domains {
+  
   static subscript(domain index: Int, attribute type: String) -> String? {
     get async throws {
-      guard let domains = try await Domains.domains else {return nil}
+      guard let domains = try await Domains.domains else {
+        return nil
+      }
       let data = domains.data
-      guard 0..<data.count ~= index else {return nil}
+      guard 0..<data.count ~= index else {
+        return nil
+      }
       let attributes = data[index].attributes
       switch type {
-        case "name": return attributes.name
-        case "level": return attributes.level
-        case "description": return attributes.description
-        default: return nil
+      case "name":
+        return attributes.name
+      case "level":
+        return attributes.level
+      case "description":
+        return attributes.description
+      default:
+        return nil
       }
     }
   }
@@ -230,23 +199,26 @@ Task {
   do {
     if let name = try await Domains[domain: 4, attribute: "name"] {
       print(name)
-    }  
+    }
   } catch {
     print(error)
   }
 }
 
 enum DomainError: Error {
-  case noNetwork, noData
+  case noNetwork
+  case noData
 }
 
 func fetchDomains(for url: URL, completion: @escaping (Result<Domains, Error>) -> Void) {
-  let task = URLSession.shared.dataTask(with: url) {data, response, error in
-    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+  let task = URLSession.shared.dataTask(with: url) { data, response, error in
+    guard let httpResponse = response as? HTTPURLResponse,
+          httpResponse.statusCode == 200 else {
       completion(.failure(error ?? DomainError.noNetwork))
       return
     }
-    guard let data = data, let domains = try? JSONDecoder().decode(Domains.self, from: data) else {
+    guard let data = data,
+          let domains = try? JSONDecoder().decode(Domains.self, from: data) else {
       completion(.failure(error ?? DomainError.noData))
       return
     }
@@ -255,69 +227,34 @@ func fetchDomains(for url: URL, completion: @escaping (Result<Domains, Error>) -
   task.resume()
 }
 
-fetchDomains(for: url) {result in
+fetchDomains(for: url) { result in
   switch result {
-    case let .success(domains):
-      for domain in domains.data {
-        let attributes = domain.attributes
-        print("\(attributes.name): \(attributes.description) - \(attributes.level)")
-      }
-    case let .failure(error): print(error)
+  case let .success(domains):
+    for domain in domains.data {
+      let attributes = domain.attributes
+      print("\(attributes.name): \(attributes.description) - \(attributes.level)")
+    }
+  case let .failure(error):
+    print(error)
   }
 }
 
-func fetchDomainsWithUnsafeContinuation(for url: URL) async -> Domains {
-  await withUnsafeContinuation({continuation in
-    fetchDomains(for: url) {result in
+func fetchDomainsWithContinuation(for url: URL) async throws -> Domains {
+  try await withCheckedThrowingContinuation { continuation in
+    fetchDomains(for: url) { result in
       switch result {
-        case let .success(domains): continuation.resume(returning: domains)
-        case let .failure(error): print(error)
+      case let .success(domains):
+        continuation.resume(returning: domains)
+      case let .failure(error):
+        continuation.resume(throwing: error)
       }
     }
-  })
-}
-
-Task {
-  let domains = await fetchDomainsWithUnsafeContinuation(for: url)
-  for domain in domains.data {
-    let attributes = domain.attributes
-    print("\(attributes.name): \(attributes.description) - \(attributes.level)")
   }
-}
-
-func fetchDomainsWithCheckedContinuation(for url: URL) async -> Domains {
-  await withCheckedContinuation({continuation in
-    fetchDomains(for: url) {result in
-      switch result {
-        case let .success(domains): continuation.resume(returning: domains)
-        case let .failure(error): print(error)
-      }
-    }
-  })
-}
-
-Task {
-  let domains = await fetchDomainsWithCheckedContinuation(for: url)
-  for domain in domains.data {
-    let attributes = domain.attributes
-    print("\(attributes.name): \(attributes.description) - \(attributes.level)")
-  }
-}
-
-func fetchDomainsWithUnsafeThrowingContinuation(for url: URL) async throws -> Domains {
-  try await withUnsafeThrowingContinuation({continuation in
-    fetchDomains(for: url) {result in
-      switch result {
-        case let .success(domains): continuation.resume(returning: domains)
-        case let .failure(error): continuation.resume(throwing: error)
-      }
-    }
-  })
 }
 
 Task {
   do {
-    let domains = try await fetchDomainsWithUnsafeThrowingContinuation(for: url)
+    let domains = try await fetchDomainsWithContinuation(for: url)
     for domain in domains.data {
       let attributes = domain.attributes
       print("\(attributes.name): \(attributes.description) - \(attributes.level)")
@@ -327,84 +264,66 @@ Task {
   }
 }
 
-func fetchDomainsWithCheckedThrowingContinuation(for url: URL) async throws -> Domains {
-  try await withCheckedThrowingContinuation({continuation in
-    fetchDomains(for: url) {result in
-      switch result {
-        case let .success(domains): continuation.resume(returning: domains)
-        case let .failure(error): continuation.resume(throwing: error)
-      }
-    }
-  })
-}
-
-Task {
-  do {
-    let domains = try await fetchDomainsWithCheckedThrowingContinuation(for: url)
-    for domain in domains.data {
-      let attributes = domain.attributes
-      print("\(attributes.name): \(attributes.description) - \(attributes.level)")
-    }
-  } catch {
-    print(error)
-  }
-}
-
-actor Playlist {
-  let title: String
-  let author: String
-  private var songs: [String]
-  
-  init(title: String, author: String, songs: [String]) {
-    self.title = title
-    self.author = author
-    self.songs = songs
-  }
-  
-  private func add(song: String) {
-    songs.append(song)
-  }
-  
-  private func remove(song: String) {
-    guard !songs.isEmpty, let index = songs.firstIndex(of: song) else {return}
-    songs.remove(at: index)
-  }
-  
-  func transfer(song: String, from playlist: isolated Playlist) {
-    playlist.remove(song: song)
-    add(song: song)
-  }
-  
-  func move(song: String, to playlist: isolated Playlist) {
-    remove(song: song)
-    playlist.add(song: song)
-  }
-}
-
-let favoritePlaylist = Playlist(title: "Favorite songs", author: "Cosmin", songs: ["Nothing else matters"])
-let partyPlaylist = Playlist(title: "Party songs", author: "Ray", songs: ["Stairway to heaven"])
-
-/*
-Task {
-  await favoritePlaylist.transfer(song: "Stairway to heaven", from: partyPlaylist)
-  await favoritePlaylist.move(song: "Nothing else matters", to: partyPlaylist)
-}
-*/
-
-//Warning: The commented asynchronous code only works in projects.
-
-extension Playlist: CustomStringConvertible {
-  nonisolated var description: String {
-    "\(title) by \(author)."
-  }
-}
-
-print(favoritePlaylist)
+// The following code is commented out because Actors don't work properly in playgrounds.
+//
+//actor Playlist {
+//
+//  let title: String
+//  let author: String
+//  private(set) var songs: [String]
+//
+//  init(title: String, author: String, songs: [String]) {
+//    self.title = title
+//    self.author = author
+//    self.songs = songs
+//  }
+//
+//  func add(song: String) {
+//    songs.append(song)
+//  }
+//
+//  func remove(song: String) {
+//    guard !songs.isEmpty,
+//          let index = songs.firstIndex(of: song) else {
+//      return
+//    }
+//    songs.remove(at: index)
+//  }
+//
+//  func transfer(song: String, from playlist: Playlist) async {
+//    await playlist.remove(song: song)
+//    add(song: song)
+//  }
+//
+//  func move(song: String, to playlist: Playlist) async {
+//    await playlist.add(song: song)
+//    remove(song: song)
+//  }
+//}
+//
+//let favorites = Playlist(title: "Favorite songs", author: "Cosmin", songs: ["Nothing else matters"])
+//let partyPlaylist = Playlist(title: "Party songs", author: "Ray", songs: ["Stairway to heaven"])
+//
+//Task {
+//  await favorites.transfer(song: "Stairway to heaven", from: partyPlaylist)
+//  await favorites.move(song: "Nothing else matters", to: partyPlaylist)
+//  await print(favorites.songs)
+//}
+//
+//extension Playlist: CustomStringConvertible {
+//
+//  nonisolated var description: String {
+//    "\(title) by \(author)."
+//  }
+//}
+//
+//print(favorites)
 
 final class BasicPlaylist {
+
   let title: String
   let author: String
-  
+
   init(title: String, author: String) {
     self.title = title
     self.author = author
