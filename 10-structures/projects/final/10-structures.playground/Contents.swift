@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,13 +30,14 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+
 import Foundation
 
-let restaurantLocation = (3, 4)
+let restaurantLocation = (3, 3)
 let restaurantRange = 2.5
 
-let otherRestaurantLocation = (7, 8)
-let otherRestaurantRange = 1.5
+let otherRestaurantLocation = (8, 8)
+let otherRestaurantRange = 2.5
 
 // Pythagorean Theorem 📐🎓
 func distance(from source: (x: Int, y: Int),
@@ -46,22 +51,22 @@ func distance(from source: (x: Int, y: Int),
 func isInDeliveryRange(location: (x: Int, y: Int)) -> Bool {
   let deliveryDistance =
     distance(from: location, to: restaurantLocation)
-
+  
   let secondDeliveryDistance =
     distance(from: location, to: otherRestaurantLocation)
-
+  
   return deliveryDistance < restaurantRange ||
     secondDeliveryDistance < otherRestaurantRange
 }
 
-isInDeliveryRange(location: (x: 5, y: 5))
+isInDeliveryRange(location: (x: 5, y: 5)) // false
 
 struct Location {
   let x: Int
   let y: Int
 }
 
-let storeLocation = Location(x: 3, y: 4)
+let storeLocation = Location(x: 3, y: 3)
 
 func distance(from source: Location, to target: Location) -> Double {
   let distanceX = Double(source.x - target.x)
@@ -91,22 +96,22 @@ struct DeliveryArea: CustomStringConvertible {
 
 var storeArea = DeliveryArea(center: storeLocation, radius: 2.5)
 
-print(storeArea.radius) // 2.5
+storeArea.radius // 2.5
 
-print(storeArea.center.x) // 3
+storeArea.center.x // 3
 
-storeArea.radius = 250
+storeArea.radius = 3.5
 
 // Change `fixedArea` from a `let` constant to a `var` variable to make it mutable.
 var fixedArea = DeliveryArea(center: storeLocation, radius: 4)
 
 // Error: Cannot assign to property
-fixedArea.radius = 250
+fixedArea.radius = 3.5
 
 
 let areas = [
-  DeliveryArea(center: Location(x: 3, y: 4), radius: 2.5),
-  DeliveryArea(center: Location(x: 7, y: 8), radius: 1.5)
+  DeliveryArea(center: Location(x: 3, y: 3), radius: 2.5),
+  DeliveryArea(center: Location(x: 8, y: 8), radius: 2.5)
 ]
 
 func isInDeliveryRange(_ location: Location) -> Bool {
@@ -122,35 +127,39 @@ func isInDeliveryRange(_ location: Location) -> Bool {
   return false
 }
 
-let customerLocation1 = Location(x: 8, y: 1)
-let customerLocation2 = Location(x: 5, y: 5)
+let customerLocation1 = Location(x: 5, y: 5)
+let customerLocation2 = Location(x: 7, y: 7)
 
-print(isInDeliveryRange(customerLocation1)) // false
-print(isInDeliveryRange(customerLocation2)) // true
+isInDeliveryRange(customerLocation1) // false
+isInDeliveryRange(customerLocation2) // true
 
-let area = DeliveryArea(center: Location(x: 3, y: 4), radius: 2.5)
-let customerLocation = Location(x: 5, y: 5)
+let area = DeliveryArea(center: Location(x: 8, y: 8), radius: 2.5)
+let customerLocation = Location(x: 7, y: 7)
 area.contains(customerLocation) // true
 
 var a = 5
 var b = a
-print(a) // 5
-print(b) // 5
+
+a // 5
+b // 5
 
 a = 10
-print(a) // 10
-print(b) // 5
 
-var area1 = DeliveryArea(center: Location(x: 3, y: 4), radius: 2.5)
+a // 10
+b // 5
+
+var area1 = DeliveryArea(center: Location(x: 3, y: 3), radius: 2.5)
 var area2 = area1
-print(area1.radius) // 2.5
-print(area2.radius) // 2.5
+
+area1.radius // 2.5
+area2.radius // 2.5
 
 area1.radius = 4
-print(area1.radius) // 4.0
-print(area2.radius) // 2.5
+
+area1.radius // 4.0
+area2.radius // 2.5
 
 
-print(area1) // Area with center: (x: 2, y: 4), radius: 4.0
-print(area2) // Area with center: (x: 2, y: 4), radius: 2.5
+print(area1) // Area with center: (x: 3, y: 3), radius: 4.0
+print(area2) // Area with center: (x: 3, y: 3), radius: 2.5
 
