@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2021 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -94,6 +94,18 @@ print(raw2)
 let can = "can do that too"
 let raw3 = #"Yes we \#(can)!"#
 print(raw3)
+
+let multiRaw = #"""
+  _____         _  __ _                                         _   _
+ / ____|       (_)/ _| |       /\                              | | (_)
+| (_____      ___| |_| |_     /  \   _ __  _ __  _ __ ___ _ __ | |_ _  ___ ___
+ \___ \ \ /\ / / |  _| __|   / /\ \ | '_ \| '_ \| '__/ _ \ '_ \| __| |/ __/ _ \
+ ____) \ V  V /| | | | |_   / ____ \| |_) | |_) | | |  __/ | | | |_| | (_|  __/
+|_____/ \_/\_/ |_|_|  \__| /_/    \_\ .__/| .__/|_|  \___|_| |_|\__|_|\___\___|
+                                  | |   | |
+                                  |_|   |_|
+"""#
+print(multiRaw)
 
 // SUBSTRINGS
 let fullName = "Matt Galloway"
