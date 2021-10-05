@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,6 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-
 /*:
  ## Classes
  ### Challenge 1
@@ -42,7 +41,6 @@
  - `List` - Contains a name and an array of movie titles. A `print` method will print all the movies in the list.
  - Create `jane` and `john` users and have them create and share lists. Have both `jane` and `john` modify the same list and call `print` from both users. Are all the changes reflected?
 */
-
 class User {
   var lists: [String: List] = [:]
 
@@ -92,14 +90,10 @@ john.lists["Action"]?.print()
 
 // See Jane's list:
 jane.lists["Action"]?.print()
-
 /*:
- 
  What happens when you implement the same with structs and what problems do you run into?
  */
-
  // Solution: With structs and copy semantics, once John and Jane get the Action list via `addList(_:)`, they each get a copy instead of sharing the same list. That way, when one adds a movie - the other doesn't see it!
-
 /*:
  ### Challenge 2
  
@@ -109,9 +103,7 @@ jane.lists["Action"]?.print()
  - `User` - A registered user of the t-shirt store app. A user has a name, email, and a `ShoppingCart` (below).
  - `Address` - Represents a shipping address, containing the name, street, city, and zip code.
  - `ShoppingCart` - Holds a current order, which is composed of an array of `TShirt` that the `User` wants to buy, as well as a method to calculate the total cost. Additionally, there is an `Address` that represents where the order will be shipped.
-
- */
-
+*/
 /*
  Solution:
 
