@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2021 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -116,8 +116,8 @@ class BankingTests: XCTestCase {
   }
 
   func testNewAPI() {
-    guard #available(iOS 14, *) else {
-      XCTFail("Only available in iOS 14 and above")
+    guard #available(iOS 15, *) else {
+      XCTFail("Only available in iOS 15 and above")
       return
     }
     // perform test
