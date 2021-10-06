@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,6 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-
 /*:
  ## Advanced Classes
  ### Challenge 1
@@ -40,7 +39,6 @@
  ### Challenge 2
   Implement `deinit` for each class. Place your `c` inside of a `do { }` scope which will cause the reference count to go to zero when it exits the scope. What order are the classes deinitialized in?
  */
-
 class A {
   init() {
     print("I'm A!(1)")
@@ -75,23 +73,19 @@ class C: B {
 do {
   let _ = C()
 }
-
 /*:
  ### Challenge 3
  Cast the instance of type `C` to an instance of type `A`. Which casting operation do you use and why?
  */
-
 do {
   let c = C()
   let _ = c as A
   // The `as` keyword can be used because `C` is a subtype of `A`.
 }
-
 /*:
 ### Challenge 4
 Create a subclass of `StudentAthlete` called `StudentBaseballPlayer` and include properties for `position`, `number`, and `battingAverage`.  What are the benefits and drawbacks of subclassing `StudentAthlete` in this scenario?
  */
-
 class Person {
   var firstName: String
   var lastName: String
