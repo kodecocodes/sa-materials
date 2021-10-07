@@ -41,7 +41,7 @@ func greet(name: String) -> NSAttributedString {
     NSAttributedString.Key.font : UIFont.systemFont(ofSize: 20),
     NSAttributedString.Key.foregroundColor : UIColor.blue
   ]
-  message.append(NSAttributedString(string: ", Mother of dragons", attributes: attributes2))
+  message.append(NSAttributedString(string: ", Mother of Dragons", attributes: attributes2))
   return message
 }
 
@@ -134,7 +134,7 @@ func greetBuilder(name: String, title: String) -> NSAttributedString {
   }
 }
 
-greetBuilder(name: "Daenerys", title: "Mother of dragons")
+greetBuilder(name: "Daenerys", title: "Mother of Dragons")
 
 @AttributedStringBuilder
 func greetBuilder(name: String, titles: [String]) -> NSAttributedString {
@@ -156,7 +156,7 @@ func greetBuilder(name: String, titles: [String]) -> NSAttributedString {
 
 let titles = ["Khaleesi",
               "Mhysa",
-              "The Silver Queen",
+              "First of Her Name",
               "Silver Lady",
               "The Mother of Dragons"]
 greetBuilder(name: "Daenerys", titles: titles)
