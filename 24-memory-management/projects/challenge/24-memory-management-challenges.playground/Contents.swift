@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,6 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-
 /*:
  ## Memory Management
  ### Challenge 1: Break the cycle
@@ -70,7 +69,6 @@
  car = nil
  ```
  */
-
 class Person {
   let name: String
   let email: String
@@ -108,7 +106,6 @@ car?.owner = owner
 
 owner = nil
 car = nil
-
 /*:
  ### Challenge 2: Break another cycle
  
@@ -155,7 +152,6 @@ car = nil
  customer = nil
  ```
  */
-
 class Customer {
   let name: String
   let email: String
