@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 Razeware LLC
+ * Copyright (c) 2021 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -194,51 +194,3 @@ do {
 
 } // end of do scope, so you can try again
 
-// Copy-on-write, using a property wrapper
-
-// a property wrapper, named CopyOnWriteColor
-@propertyWrapper
-struct CopyOnWriteColor {
-  // ... which can be initialized with a Color,
-  // thus allowing the wrapped property to be initialized with Color
-  init(wrappedValue: Color) {
-    self.bucket = Bucket(color: wrappedValue)
-  }
-  
-  // ...  defining a private property, which holds the storage
-  private var bucket: Bucket
-  
-  // ... defining a wrappedValue with computed properties, which
-  // implement the usual copy-on-write logic
-  var wrappedValue: Color {
-    get {
-      bucket.color
-    }
-    set {
-      if isKnownUniquelyReferenced(&bucket) {
-        bucket.color = newValue
-      } else {
-        bucket = Bucket(color:newValue)
-      }
-    }
-  }
-}
-
-
-struct PaintingPlan {
-  
-  // a value semantic type, which is a simple value type
-  var accent = Color.white
-
-  // a value semantic type, backed by a reference type managed by a property wrapper
-  @CopyOnWriteColor var bucketColor = .blue
-  // ... and another, without any code duplication
-  @CopyOnWriteColor var bucketColorForDoor = .blue
-  // ... and another, without any code duplication
-  @CopyOnWriteColor var bucketColorForWalls = .blue
-}
-
-var artPlan = PaintingPlan()
-var housePlan = artPlan
-housePlan.bucketColor = Color.green
-artPlan.bucketColor // blue. good!
