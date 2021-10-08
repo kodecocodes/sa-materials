@@ -30,8 +30,63 @@
 
 import Foundation
 
+@propertyWrapper
+struct ZeroToOne {
+  private var value: Double
+
+  private static func clamped(_ input: Double) -> Double {
+    min(max(input, 0), 1)
+  }
+
+  init(wrappedValue: Double) {
+    value = Self.clamped(wrappedValue)
+  }
+
+  var wrappedValue: Double {
+    get { value }
+    set { value =  Self.clamped(newValue) }
+  }
+}
+
+@propertyWrapper
+struct ZeroToOneV2 {
+  private var value: Double
+
+  init(wrappedValue: Double) {
+    value = wrappedValue
+  }
+
+  var wrappedValue: Double {
+    get { min(max(value, 0), 1) }
+    set { value = newValue }
+  }
+
+  var projectedValue: Double { value }
+}
+
+@propertyWrapper
+struct ZeroTo<Value: Numeric & Comparable> {
+  private var value: Value
+  let upper: Value
+
+  init(wrappedValue: Value, upper: Value) {
+    value = wrappedValue
+    self.upper = upper
+  }
+
+  var wrappedValue: Value {
+    get { min(max(value, 0), upper) }
+    set { value = newValue }
+  }
+
+  var projectedValue: Value { value }
+}
+
+
 struct Color: CustomStringConvertible {
-  var red, green, blue: Double
+  @ZeroToOne var red: Double
+  @ZeroToOne var green: Double
+  @ZeroToOne var blue: Double
 
   var description: String {
     "r: \(red) g: \(green) b: \(blue)"
@@ -46,6 +101,30 @@ extension Color {
   static var green = Color(red: 0, green: 1, blue: 0)
   // more ...
 }
+
+var superRed = Color(red: 2, green: 0, blue: 0)
+print(superRed) // r: 1, g: 0, b: 0
+superRed.blue = -2
+print(superRed) // r: 1, g: 0, b: 0
+
+func printValue(@ZeroToOne _ value: Double) {
+  print("The wrapped value is", value)
+}
+
+printValue(3.14)
+
+func printValueV2(@ZeroToOneV2 _ value: Double) {
+  print("The wrapped value is", value)
+  print("The projected value is", $value)
+}
+
+printValueV2(3.14)
+
+func printValueV3(@ZeroTo(upper: 10) _ value: Double) {
+  print("The wrapped value is", value)
+  print("The projected value is", $value)
+}
+printValueV3(42)
 
 // Paint bucket abstraction
 class Bucket {
@@ -92,7 +171,6 @@ struct CopyOnWriteColor {
   }
 }
 
-
 struct PaintingPlan {
 
   // a value semantic type, which is a simple value type
@@ -118,7 +196,7 @@ artPlan.bucketColor // blue. good!
 public struct ValidatedDate {
     
   private var storage: Date? = nil
-  private let formatter = DateFormatter()
+  private(set) var formatter = DateFormatter()
 
   public init(wrappedValue: String) {
     self.formatter.dateFormat = "yyyy-mm-dd"
@@ -138,13 +216,9 @@ public struct ValidatedDate {
     }
   }
   
-  public var projectedValue: String {
-    get {
-      formatter.dateFormat
-    }
-    set {
-      formatter.dateFormat = newValue
-    }
+  public var projectedValue: DateFormatter {
+    get { formatter }
+    set { formatter = newValue }
   }
 }
 
@@ -164,8 +238,11 @@ order.orderPlacedDate = "2015-06-50"
 // observe that all you can read back is "invalid"
 order.orderPlacedDate // => "invalid"
 order.orderPlacedDate = "2014-06-02"
+
 // update the date format using the projected value
-order.$orderPlacedDate = "mm/dd/yyyy"
+let otherFormatter = DateFormatter()
+otherFormatter.dateFormat = "mm/dd/yyyy"
+order.$orderPlacedDate = otherFormatter
 // read the string in the new format
-order.orderPlacedDate // => 06/02/2014"
+order.orderPlacedDate // => "06/02/2014"
 
