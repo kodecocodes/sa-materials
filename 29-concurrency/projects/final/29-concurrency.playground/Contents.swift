@@ -126,8 +126,8 @@ func findTitlesSerial(first: URL, second: URL) async throws -> (String?, String?
 
 /*
 func findTitlesParallel(first: URL, second: URL) async throws -> (String?, String?) {
-  async let title1 = await findTitle(url: first)
-  async let title2 = await findTitle(url: second)
+  async let title1 = findTitle(url: first)
+  async let title2 = findTitle(url: second)
   let titles = try await [title1, title2]
   return (titles[0], titles[1])
 }
