@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,14 +30,14 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-protocol Pet {
-  var name: String { get }
-}
-struct Cat: Pet {
-  var name: String
-}
-
-var somePet: Pet = Cat(name: "Whiskers")
+//protocol Pet {
+//  var name: String { get }
+//}
+//struct Cat: Pet {
+//  var name: String
+//}
+//
+//var somePet: Pet = Cat(name: "Whiskers")
 
 //protocol Pet {
 //  associatedtype Food
@@ -199,6 +199,50 @@ let collections = [AnyCollection(array),
                    AnyCollection(array.reversed())]
 
 let total = collections.flatMap { $0 }.reduce(0, +) // 165
+
+protocol Pet {
+  associatedtype Food
+  func eat(_ food: Food)
+}
+
+enum PetFood { case dry, wet }
+
+struct Cat: Pet {
+  func eat(_ food: PetFood) {
+    print("Eating cat food.")
+  }
+}
+
+struct Dog: Pet {
+  func eat(_ food: PetFood) {
+    print("Eating dog food.")
+  }
+}
+
+//let pets: [Pet] = [Dog(), Cat()] // ERROR: Pet can only be used as a generic constraint
+
+struct AnyPet<Food>: Pet {
+  private let _eat: (Food) -> Void
+
+  init<SomePet: Pet>(_ pet: SomePet) where SomePet.Food == Food {
+    _eat = pet.eat(_:)
+  }
+
+  func eat(_ food: Food) {
+    _eat(food)
+  }
+}
+
+let pets = [AnyPet(Dog()), AnyPet(Cat())]
+
+extension Pet {
+  func eraseToAnyPet() -> AnyPet<Food> {
+    .init(self)
+  }
+}
+
+let morePets = [Dog().eraseToAnyPet(),
+            Cat().eraseToAnyPet()]
 
 func makeValue() -> some FixedWidthInteger {
   42
