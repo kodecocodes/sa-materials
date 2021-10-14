@@ -30,7 +30,7 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import UIKit
+import SwiftUI
 /*:
  ## Concurrency
  ### Challenge 1: Safe teams
@@ -38,7 +38,6 @@ import UIKit
  
  ```swift
  class Team {
- 
    let name: String
    let stadium: String
    private var players: [String]
@@ -54,9 +53,7 @@ import UIKit
    }
  
    private func remove(player: String) {
-     guard !players.isEmpty, let index = players.firstIndex(of: player) else {
-       return
-     }
+     guard !players.isEmpty, let index = players.firstIndex(of: player) else {return}
      players.remove(at: index)
    }
  
@@ -73,7 +70,6 @@ import UIKit
  ```
  */
 actor Team {
-  
   let name: String
   let stadium: String
   private var players: [String]
@@ -89,12 +85,11 @@ actor Team {
   }
   
   private func remove(player: String) {
-    guard !players.isEmpty, let index = players.firstIndex(of: player) else {
-      return
-    }
+    guard !players.isEmpty, let index = players.firstIndex(of: player) else {return}
     players.remove(at: index)
   }
   
+  /*
   func buy(player: String, from team: Team) async {
     await team.remove(player: player)
     add(player: player)
@@ -103,9 +98,11 @@ actor Team {
   func sell(player: String, to team: Team) async {
     await team.add(player: player)
     remove(player: player)
-
   }
+  */
 }
+
+//Warning: The commented asynchronous code only works in projects.
 
 let madridTeam = Team(name: "Real Madrid", stadium: "Santiago Bernabeu", players: ["Lionel Messi"])
 let barcelonaTeam = Team(name: "FC Barcelona" , stadium: "Camp Nou", players: ["Cristiano Ronaldo"])
@@ -123,7 +120,6 @@ Task {
  Conform the asynchronous-safe type from the previous challenge to `CustomStringConvertible`.
  */
 extension Team: CustomStringConvertible {
-  
   nonisolated var description: String  {
     "\(name) plays at \(stadium)."
   }
@@ -136,7 +132,6 @@ print(madridTeam)
  
  ```swift
  class BasicTeam {
- 
    var name: String
    var stadium: String
  
@@ -148,7 +143,6 @@ print(madridTeam)
  ```
  */
 final class BasicTeam {
-  
   let name: String
   let stadium: String
   
