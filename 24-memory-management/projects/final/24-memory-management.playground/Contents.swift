@@ -102,13 +102,13 @@ do {
 }
 
 final class FunctionKeeper {
-  private let function: () -> Void       // 1
+  private let function: () -> Void
   
-  init(function: @escaping () -> Void) { // 2
+  init(function: @escaping () -> Void) {
     self.function = function
   }
   
-  func run() {                           // 3
+  func run() {
     function()
   }
 }
@@ -120,17 +120,17 @@ let f = FunctionKeeper {
 f.run()
 
 var counter = 0
-var g = { print(counter) }
+var g = {print(counter)}
 counter = 1
 g()
 
 counter = 0
-g = { [c = counter] in print(c) }
+g = {[c = counter] in print(c)}
 counter = 1
 g()
 
 counter = 0
-g = { [counter] in print(counter) }
+g = {[counter] in print(counter)}
 counter = 1
 g()
 
