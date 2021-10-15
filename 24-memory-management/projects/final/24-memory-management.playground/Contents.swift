@@ -101,20 +101,38 @@ do {
   editor.tutorials.append(tutorial)
 }
 
+final class FunctionKeeper {
+  private let function: () -> Void       // 1
+  
+  init(function: @escaping () -> Void) { // 2
+    self.function = function
+  }
+  
+  func run() {                           // 3
+    function()
+  }
+}
+
+let name = "Cosmin"
+let f = FunctionKeeper {
+  print("Hello, \(name)")
+}
+f.run()
+
 var counter = 0
-var f = { print(counter) }
+var g = { print(counter) }
 counter = 1
-f()
+g()
 
 counter = 0
-f = { [c = counter] in print(c) }
+g = { [c = counter] in print(c) }
 counter = 1
-f()
+g()
 
 counter = 0
-f = { [counter] in print(counter) }
+g = { [counter] in print(counter) }
 counter = 1
-f()
+g()
 
 let tutorialDescription: () -> String
 do {
