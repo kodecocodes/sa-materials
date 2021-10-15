@@ -118,7 +118,7 @@ func reversed(_ array: [Int]) -> [Int] {
 /*:
  ### Challenge 5: Return the middle
  Write a function that returns the middle element of an array.
- When array size is even, return the first of the two middle elememnts.
+ When array size is even, return the first of the two middle elements.
  
  ```swift
  func middle(_ array: [Int]) -> Int?
@@ -129,7 +129,7 @@ func middle(_ array: [Int]) -> Int? {
   guard !array.isEmpty else {
     return nil
   }
-  return array[array.count/2]
+  return array[(array.count-1)/2]
 }
 
 /*:
