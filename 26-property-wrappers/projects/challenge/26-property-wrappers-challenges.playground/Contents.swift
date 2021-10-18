@@ -100,22 +100,24 @@ In practice, the main value of an explicit implementation, like the one above, i
 
  ### Challenge 2: Implement @ValueSemantic
 
- Using the following protocol `DeepCopyable` as a constraint, write the definition for a generic property wrapper `@ValueSemantic`, and use it in an example to verify that the wrapped properties have value semantics, even when they are wrapping an underlying type which does not. Use `NSMutableString` is an example of a non-value semantic type.
+ Using `StorageBox` from the previous example and the following protocol, `DeepCopyable`, as a constraint, write the definition for a generic property wrapper `@ValueSemantic`. Then use it in an example to verify that wrapped properties have value semantics even when wrapping an underlying type that doesn't. Example: `NSMutableString` is an example of a non-value semantic type.  Make it conform to `DeepCopyable` and test it with `@ValueSemantic`.
+
+ Hints:
+
+ - If the `DeepCopyable` conforming type is a reference type or otherwise doesn't have value semantics, making a deep copy ensures properties don't share any storage and changes to one don't affect the other.
+
+ - Note that if the conforming type already has value semantics, it meets these requirements, so it's enough to return `self`. In this case, however, there’s no point in using `@ValueSemantic`.
+
  */
 protocol DeepCopyable {
-  /*
-
-   Returns a _deep copy_ of the current instance.
+  /* Returns a _deep copy_ of the current instance.
 
    If `x` is a deep copy of `y`, then:
    - the instance `x` should have the same value as `y` (for some sensible definition of value -- _not_ just memory location or pointer equality!)
    - it should be impossible to do any operation on `x` that will modify the value of the instance `y`.
 
-   If the conforming type is a reference type (or otherwise does not have value semantics), then the way to achieve a deep copy is by ensuring that `x` and `y` do not share any storage, do not contain any properties that share any storage, and so on..
-
-   If the conforming type already has value semantics then it already meets these requirements, and it suffices to return `self`. But in this case, there's no point to using the `@ValueSemantic` property wrapper.
-
-   */
+  Note: a value semantic type implementing this protocol can just return `self` since that fulfills the above requirement.
+  */
   func deepCopy() -> Self
 }
 //: challenge answer:
