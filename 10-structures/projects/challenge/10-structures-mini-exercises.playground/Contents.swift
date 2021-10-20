@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -32,8 +36,8 @@ import Foundation
 //: Write a structure that represents a pizza order. Include toppings, size and any other option you’d want for a pizza.
 struct Pizza {
   let size: Int // Inches
-  let toppings: [String] // Pepperoni, cheese
-  let style: String // Thick, thin, hand-tossed
+  let toppings: [String] // Pepperoni, Mushrooms
+  let style: String // Thick, Thin, Hand-tossed
 }
 
 let pizza = Pizza(size: 14, toppings: ["Pepperoni", "Mushrooms", "Anchovies"], style: "Thin")
@@ -68,10 +72,10 @@ struct DeliveryArea {
   }
 }
 
-let area1 = DeliveryArea(center: Location(x: 3, y: 4), radius: 2.5)
-let area2 = DeliveryArea(center: Location(x: 7, y: 8), radius: 2.5)
+let area1 = DeliveryArea(center: Location(x: 3, y: 3), radius: 2.5)
+let area2 = DeliveryArea(center: Location(x: 8, y: 8), radius: 2.5)
 area1.overlaps(with: area2) // false
 
-let area3 = DeliveryArea(center: Location(x: 3, y: 4), radius: 2.5)
+let area3 = DeliveryArea(center: Location(x: 4, y: 4), radius: 2.5)
 let area4 = DeliveryArea(center: Location(x: 7, y: 7), radius: 2.5)
 area3.overlaps(with: area4) // true
