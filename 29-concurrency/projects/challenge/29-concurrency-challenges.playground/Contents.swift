@@ -89,7 +89,6 @@ actor Team {
     players.remove(at: index)
   }
   
-  /*
   func buy(player: String, from team: Team) async {
     await team.remove(player: player)
     add(player: player)
@@ -99,22 +98,15 @@ actor Team {
     await team.add(player: player)
     remove(player: player)
   }
-  */
 }
-
-//Warning: The commented asynchronous code only works in projects.
 
 let madridTeam = Team(name: "Real Madrid", stadium: "Santiago Bernabeu", players: ["Lionel Messi"])
 let barcelonaTeam = Team(name: "FC Barcelona" , stadium: "Camp Nou", players: ["Cristiano Ronaldo"])
 
-/*
 Task {
   await madridTeam.buy(player: "Cristiano Ronaldo", from: barcelonaTeam)
   await madridTeam.sell(player: "Lionel Messi", to: barcelonaTeam)
 }
-*/
-
-//Warning: The commented asynchronous code only works in projects.
 /*:
  ### Challenge 2: Custom teams
  Conform the asynchronous-safe type from the previous challenge to `CustomStringConvertible`.
