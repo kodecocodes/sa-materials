@@ -183,7 +183,6 @@ actor Playlist {
     songs.remove(at: index)
   }
   
-  /*
   func move(song: String, from playlist: Playlist) async {
     await playlist.remove(song: song)
     add(song: song)
@@ -193,23 +192,16 @@ actor Playlist {
     await playlist.add(song: song)
     remove(song: song)
   }
-  */
 }
-
-//Warning: The commented asynchronous code only works in projects.
 
 let favorites = Playlist(title: "Favorite songs", author: "Cosmin", songs: ["Nothing else matters"])
 let partyPlaylist = Playlist(title: "Party songs", author: "Ray", songs: ["Stairway to heaven"])
 
-/*
 Task {
   await favorites.move(song: "Stairway to heaven", from: partyPlaylist)
   await favorites.move(song: "Nothing else matters", to: partyPlaylist)
   await print(favorites.songs)
 }
-*/
-
-//Warning: The commented asynchronous code only works in projects.
 
 extension Playlist: CustomStringConvertible {
   nonisolated var description: String {
