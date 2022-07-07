@@ -15,3 +15,4 @@ We’ve set up an official forum for the book at [https://forums.raywenderlich.c
 | [editions/5.0](https://github.com/raywenderlich/sa-materials/tree/editions/5.0) | 5.0     | 2019-10-01   |
 | [editions/6.0](https://github.com/raywenderlich/sa-materials/tree/editions/6.0) | 6.0     | 2020-10-01   |
 | [editions/7.0](https://github.com/raywenderlich/sa-materials/tree/editions/7.0) | 7.0     | 2021-10-27   |
+| [editions/8.0](https://github.com/raywenderlich/sa-materials/tree/editions/8.0) | 8.0     | YYYY-MM-DD   |
