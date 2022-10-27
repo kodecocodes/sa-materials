@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2022 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,11 +29,12 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
+
 //: 1 - Create a protocol `Area` that defines a read-only property `area` of type `Double`.
 protocol Area {
   var area: Double { get }
 }
-//: 2. Implement `Area` with structs representing `Square`, `Triangle`, and `Circle`.
+//: 2 - Implement `Area` with structs representing `Square`, `Triangle`, and `Circle`.
 struct Square: Area {
   let side: Double
   
@@ -58,7 +59,7 @@ struct Circle: Area {
     .pi * radius * radius
   }
 }
-//: 3. Add a circle, square, and triangle to an array. Convert the array of shapes to an array of areas using `map`.
+//: 3 - Add a circle, square, and triangle to an array. Convert the array of shapes to an array of areas using `map`.
 let square = Square(side: 4)
 let triangle = Triangle(base: 3, height: 5)
 let circle = Circle(radius: 2)
