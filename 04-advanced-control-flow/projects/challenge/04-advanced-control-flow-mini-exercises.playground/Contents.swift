@@ -84,9 +84,9 @@ case (let name, 13...19):
 case (let name, 20...39):
   print("\(name) is an adult")
 case (let name, 40...60):
-  print("\(name) is a middle aged")
+  print("\(name) is middle aged")
 case let (name, age) where age >= 61:
-  print("\(name) is a elderly")
+  print("\(name) is elderly")
 default:
   print("Invalid age")
 }
