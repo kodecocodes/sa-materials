@@ -104,7 +104,7 @@ print("Board position after \(currentPosition) is \(nextPosition)")
  Given a year reprsented by an `Int` and a month represented by a `String` in all lowercase and using the first three letters, calculate the number of days in the month. You need to account for leap years remembering that February ("feb") has 29 days in a leap year and 28 otherwise. A leap year occurs every 4 years, unless the year is divisible by 100, but then if it's divisible by 400 then it is actually a leap year.
  */
 let month = "feb"
-let year = 2016
+let year = 2022
 
 var days = 0
 if month == "jan" || month == "mar" || month == "may" || month == "jul" || month == "aug" || month == "oct" || month == "dec" {
@@ -112,7 +112,7 @@ if month == "jan" || month == "mar" || month == "may" || month == "jul" || month
 } else if month == "apr" || month == "jun" || month == "sep" || month == "nov" {
   days = 30
 } else if month == "feb" {
-  if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+  if (year % 4 == 0 && year % 100 != 0) || year % 400 == 0 {
     days = 29
   } else {
     days = 28
@@ -120,7 +120,7 @@ if month == "jan" || month == "mar" || month == "may" || month == "jul" || month
 }
 
 if days > 0 {
-  print("\(month) has 31 days")
+  print("\(month) has \(days) days")
 } else {
   print("Invalid month!")
 }
