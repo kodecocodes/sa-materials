@@ -42,10 +42,10 @@ let isTeenager = myAge >= 13 && myAge <= 19
  Create another constant called `theirAge` and set it to my age, which is 30. Then, create a constant called `bothTeenagers` that uses Boolean logic to determine if both you and I are teenagers.
  */
 let theirAge = 30
-let bothTeenagers = theirAge >= 13 && theirAge <= 19 && isTeenager
+let bothTeenagers = (theirAge >= 13 && theirAge <= 19) && isTeenager
 
 /*:
- Create a constant called reader and set it to your name as a string. Create a constant called author and set it to my name, Matt Galloway. Create a constant called `authorIsReader` that uses string equality to determine if reader and author are equal.
+ Create a constant called reader and set it to your name as a `String`. Create a constant called author and set it to my name, Matt Galloway. Create a constant called `authorIsReader` that uses string equality to determine if reader and author are equal.
  */
 let reader = "Joe Bloggs"
 let author = "Matt Galloway"
@@ -59,7 +59,7 @@ let readerBeforeAuthor = reader < author
 
 /*:
  ### IF STATEMENTS
- Create a constant called `myAge` and initialize it with your age. Write an if statement to print out Teenager if your age is between 13 and 19, and Not a teenager if your age is not between 13 and 19.
+ Create a constant called `myAge` and initialize it with your age. Write an `if` statement to print out "Teenager" if your age is between 13 and 19, and "Not a teenager" if your age is not between 13 and 19.
  */
 
 // let myAge = 30
@@ -77,7 +77,7 @@ print(answer)
 
 /*:
  ### WHILE LOOPS
- Create a variable named `counter` and set it equal to 0. Create a `while` loop with the condition `counter < 10` which prints out `counter` is `X` (where `X` is replaced with counter value) and then increments `counter` by 1.
+ Create a variable named `counter` and set it equal to 0. Create a `while` loop with the condition `counter < 10` which prints out "counter is X" (where `X` is replaced with counter value) and then increments `counter` by 1.
  */
 
 var counter = 0
@@ -87,13 +87,13 @@ while counter < 10 {
 }
 
 /*:
- Create a variable named counter and set it equal to 0. Create another variable named roll and set it equal to 0. Create a repeat-while loop. Inside the loop, set roll equal to `Int.random(in: 0...5)` which means to pick a random integer between 0 and 5. Then increment counter by 1. Finally, print After X rolls, roll is Y where X is the value of counter and Y is the value of roll. Set the loop condition such that the loop finishes when the first 0 is rolled.
+ Create a variable named counter and set it equal to 0. Create another variable named roll and set it equal to 0. Create a repeat-while loop. Inside the loop, set roll equal to `Int.random(in: 1...6)` which means to pick a random integer between 1 and 6. Then increment counter by 1. Finally, print "After X rolls, roll is Y" where X is the value of counter and Y is the value of roll. Set the loop condition such that the loop finishes when the first 0 is rolled.
  */
 
 /*var */counter = 0
 var roll = 0
 repeat {
-  roll = Int.random(in: 0...5)
+  roll = Int.random(in: 1...6)
   counter += 1
   print("After \(counter) roll(s), roll is \(roll)")
-} while roll != 0
+} while roll != 1
