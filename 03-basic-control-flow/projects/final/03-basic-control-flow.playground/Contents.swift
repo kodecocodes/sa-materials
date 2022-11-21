@@ -67,7 +67,7 @@ if 2 > 1 {
   print("Yes, 2 is greater than 1.")
 }
 
-let animal = "Fox"
+let animal = "Zebra"
 if animal == "Cat" || animal == "Dog" {
   print("Animal is a house pet.")
 } else {
@@ -75,7 +75,7 @@ if animal == "Cat" || animal == "Dog" {
 }
 
 let hourOfDay = 12
-var timeOfDay = ""
+var timeOfDay: String
 
 if hourOfDay < 6 {
   timeOfDay = "Early morning"

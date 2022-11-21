@@ -33,7 +33,7 @@
 
 /*:
  ## Basic Control Flow
- ### Challenge 1: Find the error
+ ### Challenge 1: Find the Error
  What’s wrong with the following code?
  
  ```
@@ -61,7 +61,7 @@ if firstName == "Matt" {
 let fullName = firstName + " " + lastName
 
 /*:
- ### Challenge 2: Boolean challenge
+ ### Challenge 2: Boolean Challenge
  In each of the following statements, what is the value of the Boolean `answer` constant?
  */
 
@@ -78,7 +78,7 @@ let answer4 = ((10 / 2) > 3) && ((10 % 2) == 0)
 // true
 
 /*:
- ### Challenge 3: Snakes and ladders
+ ### Challenge 3: Snakes and Ladders
  Imagine you're playing a game of snakes & ladders that goes from position 1 to position 20. On it, there are ladders at position 3 and 7 which take you to 15 and 12 respectively. Then there are snakes at positions 11 and 17 which take you to 2 and 9 respectively.
 
  Create a constant called `currentPosition`, which you can set to whatever position between 1 and 20 you like. Then create a constant called `diceRoll`, which you can set to whatever roll of the dice you want. Finally, calculate the final position taking into account the ladders and snakes, calling it `nextPosition`.
@@ -100,7 +100,7 @@ if nextPosition == 3 {
 print("Board position after \(currentPosition) is \(nextPosition)")
 
 /*:
- ### Challenge 4: Number of days in a month
+ ### Challenge 4: Number of Days in a Month
  Given a year reprsented by an `Int` and a month represented by a `String` in all lowercase and using the first three letters, calculate the number of days in the month. You need to account for leap years remembering that February ("feb") has 29 days in a leap year and 28 otherwise. A leap year occurs every 4 years, unless the year is divisible by 100, but then if it's divisible by 400 then it is actually a leap year.
  */
 let month = "feb"
@@ -126,10 +126,10 @@ if days > 0 {
 }
 
 /*:
- ### Challenge 5: Next power of two
- Given a number, determine the next power of 2 above or equal to that number.
+ ### Challenge 5: Next Power of Two
+ Given a number, determine the next power of 2 greater to or equal to that number.
  */
-let number = 946
+let number = 1024
 var trial = 1
 var times = 0
 while trial < number {
@@ -139,7 +139,7 @@ while trial < number {
 print("Next power of 2 >= \(number) is \(trial) which is 2 to the power of \(times)")
 
 /*:
- ### Challenge 6: Triangular number
+ ### Challenge 6: Triangular Number
  Given a number, print the triangular number of that depth. You can get a refresher of triangular numbers here: https://en.wikipedia.org/wiki/Triangular_number
  */
 var depth = 5
@@ -168,8 +168,8 @@ while done < n {
 print("Fibonacci number \(n) is \(current)")
 
 /*:
- ### Challenge 8: Make a loop
- Use a loop to print out the times table up to 12 of a given factor.
+ ### Challenge 8: Make a Loop
+ Use a loop to print out the multiplication or times table up to 12 of a given factor.
  */
 let factor = 7
 
@@ -182,7 +182,7 @@ while i <= 12 {
 }
 
 /*:
- ### Challenge 9: Dice roll table
+ ### Challenge 9: Dice Roll Table
  Print a table showing the number of combinations to create each number from 2 to 12 given 2 six-sided dice rolls. You should not use a formula but rather compute the number of combinations exhaustively by considering each possible dice roll.
  */
 var target = 2
