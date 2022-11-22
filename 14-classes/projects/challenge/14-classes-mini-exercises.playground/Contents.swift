@@ -49,7 +49,7 @@ class Person {
 let john = Person(firstName: "Johnny", lastName: "Appleseed")
 var homeOwner = john
 
-homeOwner.lastName = "Googleseed"
+homeOwner.lastName = "Bananapeel"
 
 print(john.fullName)
 print(homeOwner.fullName)

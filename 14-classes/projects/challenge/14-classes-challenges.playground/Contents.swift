@@ -39,7 +39,7 @@
  
  - `User` - Has a method `addList(_:)` which adds the given list to a dictionary of `List` objects (using the `name` as a key), and `list(forName:) -> List?` which will return the `List` for the provided name.
  - `List` - Contains a name and an array of movie titles. A `report` method will print all the movies in the list.
- - Create `jane` and `john` users and create a list that they share. Have both `jane` and `john` modify the list and call `print` from both users. Are all the changes reflected?
+ - Create `jane` and `john` users and create a list that they share. Have both `jane` and `john` modify the list and call `report` from both users. Are all the changes reflected?
 */
 class User {
   var lists: [String: List] = [:]
