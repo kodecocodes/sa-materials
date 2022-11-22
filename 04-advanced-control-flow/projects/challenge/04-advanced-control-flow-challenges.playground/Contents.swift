@@ -32,7 +32,7 @@
 
 /*:
  ## Advanced Control Flow
- ### Challenge 1: How many times
+ ### Challenge 1: How Many Times
 
  In the following for loop:
  
@@ -53,7 +53,7 @@ sum
 // sum = 15, 6 iterations (0, 1, 2, 3, 4, 5)
 
 /*:
- ### Challenge 2: Count the letter
+ ### Challenge 2: Count the Letter
  
  In the while loop below:
  ````
@@ -73,7 +73,7 @@ aLotOfAs.count
 // aLotOfAs contains 10 instances of "a"
 
 /*:
- ### Challenge 3: What will print
+ ### Challenge 3: What Will Print
  Consider the following switch statement:
  
  ```
@@ -129,7 +129,7 @@ default:
 }
 
 /*:
- ### Challenge 4: Closed range size
+ ### Challenge 4: Closed Range Size
  A closed range can never be empty. Why?
  */
 // Ranges must always be increasing.  With a closed range the second number is always included in the range.
@@ -141,14 +141,14 @@ halfOpenRange.isEmpty
 closedRange.isEmpty
 
 /*:
- ### Challenge 5: The final countdown
+ ### Challenge 5: The Final Countdown
  Print a countdown from 10 to 0.  (Note: do not use the `reversed()` method, which will be introduced later.)
  */
 for i in 0...10 {
   print(10 - i)
 }
 /*:
- ### Challenge 6: Print a sequence
+ ### Challenge 6: Print a Sequence
  
  Print 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0.  (Note: do not use the `stride(from:to:by:)` function, which will be introduced later.)
  */
