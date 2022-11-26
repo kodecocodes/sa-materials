@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2022 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,17 +30,14 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 /*:
- ## Enumerations Mini-exercise, *e* Math Namespace
- The constant *e* is useful in calculations for statistical bell curves and compound growth rates. Add *e* to your `Math` namespace.
+ ## Enumerations Mini-exercise, Light Switch
+ A household light switch is another example of a state machine. Create an enumeration for a light that can switch `.on` and `.off`.
  */
-import Foundation
-
-enum Math {
-  static let e = 2.7183
-  
-  static func factorial(of number: Int) -> Int {
-    (1...number).reduce(1, *)
-  }
+enum Light {
+  case on
+  case off
 }
 
-let nestEgg = 25000 * pow(Math.e, 0.07 * 20) // $101,380.95
+var light = Light.off
+light = .on
+

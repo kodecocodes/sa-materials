@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2022 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,23 +30,16 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 /*:
- ## Enumerations Mini-exercise, Semester Computed Property
- Wouldn't it be nice to request the semester from an instance like, `month.semester` instead of using the function? Add a `semester` computed property to the `Month` enumeration.
+ ## Enumerations Mini-exercise, Months Until Winter Break Computed Property
+ Make `monthsUntilWinterBreak` a computed property of the `Month` enumeration
  */
-enum Month {
-  case january, february, march, april, may, june, july, august, september, october, november, december
+enum Month: Int {
+  case january = 1, february, march, april, may, june, july, august, september, october, november, december
   
-  var semester: String {
-    switch self {
-    case .august, .september, .october, .november, .december:
-      return "Autumn"
-    case .january, .february, .march, .april, .may:
-      return "Spring"
-    case .june, .july:
-      return "Summer"
-    }
+  var monthsUntilWinterBreak: Int {
+    Month.december.rawValue - rawValue
   }
 }
 
-var month = Month.september
-let semester = month.semester // "Autumn"
+let fifthMonth = Month(rawValue: 5)!
+let monthsLeft = fifthMonth.monthsUntilWinterBreak // 7

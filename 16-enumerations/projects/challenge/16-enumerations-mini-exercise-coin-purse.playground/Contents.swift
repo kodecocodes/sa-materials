@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2022 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,14 +30,13 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 /*:
- ## Enumerations Mini-exercise, Light Switch
- A household light switch is another example of a state machine. Create an enumeration for a light that can switch `.on` and `.off`.
+ ## Enumerations Mini-exercise, Coin Purse
+ Create an array called `coinPurse` that contains coins. Add an assortment of pennies, nickels, dimes and quarters to it.
  */
-enum Light {
-  case on
-  case off
+enum Coin: Int {
+  case penny = 1
+  case nickel = 5
+  case dime = 10
+  case quarter = 25
 }
-
-var light = Light.off
-light = .on
-
+let coinPurse: [Coin] = [.penny, .quarter, .nickel, .dime, .penny, .dime, .quarter]

@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2022 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,16 +30,17 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 /*:
- ## Enumerations Mini-exercise, Months Until Winter Break Computed Property
- Make `monthsUntilWinterBreak` a computed property of the `Month` enumeration
+ ## Enumerations Mini-exercise, *e* Math Namespace
+ The constant *e* is useful in calculations for statistical bell curves and compound growth rates. Add *e* to your `Math` namespace.
  */
-enum Month: Int {
-  case january = 1, february, march, april, may, june, july, august, september, october, november, december
+import Foundation
+
+enum Math {
+  static let e = 2.7183
   
-  var monthsUntilWinterBreak: Int {
-    Month.december.rawValue - rawValue
+  static func factorial(of number: Int) -> Int {
+    (1...number).reduce(1, *)
   }
 }
 
-let fifthMonth = Month(rawValue: 5)!
-let monthsLeft = fifthMonth.monthsUntilWinterBreak // 7
+let nestEgg = 25000 * pow(Math.e, 0.07 * 20) // $101,380.95

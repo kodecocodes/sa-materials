@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2022 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,43 +30,54 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 /*:
- ## Enumerations Challenge Set 1
+ ## Enumerations Challenge Set 3
  
- Taking the coin example from earlier in the chapter, begin with an array of coins.
+ Taking the map example from earlier in the chapter, begin with the `Direction` enumeration:
  
  ```swift
- /// enum Coin: Int {
- ///   case penny = 1
- ///   case nickel = 5
- ///   case dime = 10
- ///   case quarter = 25
+ /// enum Direction {
+ ///   case north
+ ///   case south
+ ///    case east
+ ///    case west
  /// }
- ///
- /// let coinPurse: [Coin] = [.penny, .quarter, .nickel, .dime, .penny, .dime, .quarter]
  ```
  
- Write a function where you can pass in the `coinPurse`, add up the value and return the number of cents.
+ Imagine starting a new level in a video game. The character makes a series of movements in the game. Calculate the position of the character on a top-down level map after a set of movements:
+ 
+ ```swift
+ /// let movements: [Direction] = [.north, .north, .west, .south, .west, .south, .south, .east, .east, .south, .east]
+ ```
+ 
+ **Hint:** Use a tuple for the location:
+ 
+ ```swift
+ /// var location = (x: 0, y: 0)
+ ```
  */
-enum Coin: Int {
-  case penny = 1
-  case nickel = 5
-  case dime = 10
-  case quarter = 25
+enum Direction {
+  case north
+  case south
+  case east
+  case west
 }
 
-let coinPurse: [Coin] = [.penny, .quarter, .nickel, .dime, .penny, .dime, .quarter]
+let movements: [Direction] = [.north, .north, .west, .south, .west, .south, .south, .east, .east, .south, .east]
 
-func value(for purse: [Coin]) -> Int {
-  var balance = 0
-  for coin in purse {
-    balance += coin.rawValue
+var location = (x: 0, y: 0)
+
+for movement in movements {
+  switch movement {
+  case .north:
+    location.y += 1
+  case .south:
+    location.y -= 1
+  case .east:
+    location.x += 1
+  case .west:
+    location.x -= 1
   }
-  return balance
 }
 
-value(for: coinPurse) // 77 cents
-
-// An advanced way to do the same thing would be to use higher order function `reduce(_:combine:)`:
-
-let quickPurseValue = coinPurse.reduce(0) { $0 + $1.rawValue }
-quickPurseValue // 77 cents
+let currentX = location.x // 1
+let currentY = location.y // -2
