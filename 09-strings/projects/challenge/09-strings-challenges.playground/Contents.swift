@@ -37,7 +37,7 @@ import Foundation
  */
 
 /*:
- ### Challenge 1: Character count
+ ### Challenge 1: Character Count
  Write a function that takes a string and prints out the count of each character in the string.
  
  For bonus points, print them ordered by the count of each character.
@@ -72,7 +72,7 @@ printCharacterCount(for: "The quick brown fox jumps over the lazy dog")
 
 
 /*:
- ### Challenge 2: Word count
+ ### Challenge 2: Word Count
  Write a function that tells you how many words there are in a string. Do it without splitting the string.
  
  Hint: try iterating through the string yourself.
@@ -106,7 +106,7 @@ print(wordCount)
 
 
 /*:
- ### Challenge 3: Name formatter
+ ### Challenge 3: Name Formatter
 Write a function that takes a string which looks like "Galloway, Matt" and returns one which looks like "Matt Galloway", i.e., the string goes from `"<LAST_NAME>, <FIRST_NAME>"` to `"<FIRST_NAME> <LAST_NAME>"`.
  */
 
@@ -160,7 +160,7 @@ print(pieces)
 
 
 /*:
- ### Challenge 5: Word reverser
+ ### Challenge 5: Word Reverser
  Write a function which takes a string and returns a version of it with each individual word reversed.
  
  For example, if the string is “My dog is called Rover” then the resulting string would be "yM god si dellac revoR".
