@@ -33,7 +33,7 @@
 /*:
  ## Optionals
  
- ### Challenge 1: You be the compiler
+ ### Challenge 1: You Be the Compiler
  Which of the following are valid statements?
  
  ```swift
@@ -48,7 +48,7 @@ var name: String? = "Ray"
 let distance: Float = 26.7
 var middleName: String? = nil
 /*:
- ### Challenge 2: Divide and conquer
+ ### Challenge 2: Divide and Conquer
  
  First, create a function that returns the number of times an integer can be divided by another integer without a remainder. The function should return `nil` if the division doesn’t produce a whole number. Name the function `divideIfWhole`.
  
@@ -89,7 +89,7 @@ if let answer = divideIfWhole(10, by: 3) {
   print("Not divisible :[.")
 }
 /*:
- ### Challenge 3: Refactor and reduce
+ ### Challenge 3: Refactor and Reduce
  
  The code you wrote in the last challenge used `if` statements. In this challenge, refactor that code to use nil coalescing instead. This time, make it print `"It divides X times"` in all cases, but if the division doesn’t result in a whole number, then `X` should be `0`.
  */
@@ -99,7 +99,7 @@ print("It divides \(answer1) times.")
 let answer2 = divideIfWhole(10, by: 3) ?? 0
 print("It divides \(answer2) times.")
 /*:
- ### Challenge 4: Nested optionals
+ ### Challenge 4: Nested Optionals
  
  Consider the following nested optional. It corresponds to a number inside a box inside a box inside a box.
  
