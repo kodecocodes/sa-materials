@@ -31,7 +31,7 @@
 /// THE SOFTWARE.
 /*:
  ## Collection Iteration with Closures
- ### Challenge 1: Repeating yourself
+ ### Challenge 1: Repeating Yourself
  
  Your first challenge is to write a function that will run a given closure a given number of times.
  
@@ -55,7 +55,7 @@ repeatTask(times: 10) {
   print("Swift Apprentice is a great book!")
 }
 /*:
- ### Challenge 2: Closure sums
+ ### Challenge 2: Closure Sums
  
  In this challenge, you’re going to write a function that you can reuse to create different mathematical sums.
  
@@ -110,7 +110,7 @@ func fibonacci(_ number: Int) -> Int {
 // Note that you can't use a closure here as `fibonacci` is a recursive function and thus needs a name to be able to recursively call itself.
 mathSum(length: 10, series: fibonacci)
 /*:
- ### Challenge 3: Functional ratings
+ ### Challenge 3: Functional Ratings
  
  In this final challenge you will have a list of app names with associated ratings they’ve been given (note — these are all fictional apps!).
  
