@@ -34,7 +34,7 @@
 import Foundation
 
 /*:
- ### Challenge 1: Looping with stride functions
+ ### Challenge 1: Looping with Stride Functions
  
  In the last chapter you wrote some `for` loops with ranges. Ranges are limited in that they must always be increasing. The Swift `stride(from:to:by:)` and `stride(from:through:by:)` functions let you loop much more flexibly.  For example, if you wanted to loop from 10 to 20 by 4s you can write:
  
@@ -63,7 +63,7 @@ for index in stride(from: 10, through: 9, by: -0.1) {
 
 
 /*:
- ### Challenge 2: It’s prime time
+ ### Challenge 2: It’s Prime Time
  
  When I’m acquainting myself with a programming language, one of the first things I do is write a function to determine whether or not a number is prime. That’s your second challenge.
  
@@ -88,8 +88,8 @@ for index in stride(from: 10, through: 9, by: -0.1) {
  Use this function to check the following cases:
  
  ```swift
- isPrime(6) // false
- isPrime(13) // true
+ isPrime(6)    // false
+ isPrime(13)   // true
  isPrime(8893) // true
  ```
  
@@ -131,7 +131,7 @@ isPrime(8893)
 
 
 /*: 
- ### Challenge 3: Recursive functions
+ ### Challenge 3: Recursive Functions
  
  In this challenge, you will see what happens when a function calls *itself*, a behavior called **recursion**. This may sound unusual, but it can be quite useful.
  
