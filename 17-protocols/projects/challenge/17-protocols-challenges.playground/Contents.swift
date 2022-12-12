@@ -30,8 +30,7 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
-//: Pet shop tasks
+//: Pet Shop Tasks
 //:
 //: Create a collection of protocols for tasks that need doing at a pet shop. The pet shop has dogs, cats, fish and birds.
 //: The pet shop duties include these tasks:
