@@ -32,7 +32,7 @@
 /*:
  ## Enumerations
 
- ###Challenge 1
+ ### Challenge 1
  
  Taking the coin example from earlier in the chapter, begin with an array of coins.
  
