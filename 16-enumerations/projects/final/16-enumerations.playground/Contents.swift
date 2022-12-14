@@ -29,7 +29,7 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-//: ## Chapter 15: Enumerations
+//: ## Chapter 16: Enumerations
 
 let months = ["January", "February", "March", "April", "May",
               "June", "July", "August", "September", "October",
@@ -98,6 +98,13 @@ enum Coin: Int {
 
 let coin = Coin.quarter
 coin.rawValue
+
+let aSmallCoin = Coin.dime
+aSmallCoin.rawValue < coin.rawValue
+
+coin.rawValue + aSmallCoin.rawValue
+
+//let thirtyFiveCents = coin + aSmallCoin
 
 var balance = 100
 
