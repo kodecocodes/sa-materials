@@ -39,7 +39,7 @@ let myAge = 30
 let isTeenager = myAge >= 13 && myAge <= 19
 
 /*:
- Create another constant called `theirAge` and set it to my age, which is 30. Then, create a constant called `bothTeenagers` that uses Boolean logic to determine if both you and I are teenagers.
+ Create another constant called `theirAge` and set it to age 30. Then, create a constant called `bothTeenagers` that uses Boolean logic to determine if both ages denote teenagers.
  */
 let theirAge = 30
 let bothTeenagers = (theirAge >= 13 && theirAge <= 19) && isTeenager
