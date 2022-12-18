@@ -1,37 +1,40 @@
-/**
- * Copyright (c) 2021 Razeware LLC
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
- * distribute, sublicense, create a derivative work, and/or sell copies of the
- * Software in any work that is designed, intended, or marketed for pedagogical or
- * instructional purposes related to programming, coding, application development,
- * or information technology.  Permission for such use, copying, modification,
- * merger, publication, distribution, sublicensing, creation of derivative works,
- * or sale is expressly withheld.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+/// Copyright (c) 2023 Kodeco LLC
+///
+/// Permission is hereby granted, free of charge, to any person obtaining a copy
+/// of this software and associated documentation files (the "Software"), to deal
+/// in the Software without restriction, including without limitation the rights
+/// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+/// copies of the Software, and to permit persons to whom the Software is
+/// furnished to do so, subject to the following conditions:
+///
+/// The above copyright notice and this permission notice shall be included in
+/// all copies or substantial portions of the Software.
+///
+/// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
+/// distribute, sublicense, create a derivative work, and/or sell copies of the
+/// Software in any work that is designed, intended, or marketed for pedagogical or
+/// instructional purposes related to programming, coding, application development,
+/// or information technology.  Permission for such use, copying, modification,
+/// merger, publication, distribution, sublicensing, creation of derivative works,
+/// or sale is expressly withheld.
+///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
+/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+/// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+/// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+/// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+/// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+/// THE SOFTWARE.
+
 
 import Foundation
 
 /*:
- ### Challenge 1: Looping with stride functions
+ ### Challenge 1: Looping with Stride Functions
  
  In the last chapter you wrote some `for` loops with ranges. Ranges are limited in that they must always be increasing. The Swift `stride(from:to:by:)` and `stride(from:through:by:)` functions let you loop much more flexibly.  For example, if you wanted to loop from 10 to 20 by 4s you can write:
  
@@ -60,7 +63,7 @@ for index in stride(from: 10, through: 9, by: -0.1) {
 
 
 /*:
- ### Challenge 2: It’s prime time
+ ### Challenge 2: It’s Prime Time
  
  When I’m acquainting myself with a programming language, one of the first things I do is write a function to determine whether or not a number is prime. That’s your second challenge.
  
@@ -85,14 +88,14 @@ for index in stride(from: 10, through: 9, by: -0.1) {
  Use this function to check the following cases:
  
  ```swift
- isPrime(6) // false
- isPrime(13) // true
+ isPrime(6)    // false
+ isPrime(13)   // true
  isPrime(8893) // true
  ```
  
  **Hint 1**: Numbers less than 0 should not be considered prime. Check for this case at the start of the function and return early if the number is less than 0.
  
- **Hint 2**: Use a `for` loop to find divisors. If you start at two and end before the number itself, then as soon as you find a divisor, you can return `false`.
+ **Hint 2**: Use a `for` loop to find divisors. If you start at 2 and end before the number itself, then as soon as you find a divisor, you can return `false`.
  
  **Hint 3**: If you want to get *really* clever, you can simply loop from two until you reach the square root of `number` rather than going all the way up to `number` itself. I’ll leave it as an exercise for you to figure out why. It may help to think of the number 16, whose square root is 4. The divisors of 16 are 1, 2, 4, 8 and 16.
  */
@@ -128,7 +131,7 @@ isPrime(8893)
 
 
 /*: 
- ### Challenge 3: Recursive functions
+ ### Challenge 3: Recursive Functions
  
  In this challenge, you will see what happens when a function calls *itself*, a behavior called **recursion**. This may sound unusual, but it can be quite useful.
  
@@ -151,7 +154,7 @@ isPrime(8893)
  fibonacci(10) // = 55
  ```
  
- **Hint 1**: For values of `number` less than 0, you should return 0.
+ **Hint 1**: For values of `number` less than 1, you should return 0.
  
  **Hint 2**: To start the sequence, hard-code a return value of 1 when `number` equals 1 or 2.
  
@@ -159,7 +162,7 @@ isPrime(8893)
 */
 
 func fibonacci(_ number: Int) -> Int {
-  if number <= 0 {
+  if number < 1 {
     return 0
   }
 
