@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -40,8 +40,10 @@ let otherRestaurantLocation = (8, 8)
 let otherRestaurantRange = 2.5
 
 // Pythagorean Theorem 📐🎓
-func distance(from source: (x: Int, y: Int),
-              to target: (x: Int, y: Int)) -> Double {
+func distance(
+  from source: (x: Int, y: Int),
+  to target: (x: Int, y: Int)
+) -> Double {
   let distanceX = Double(source.x - target.x)
   let distanceY = Double(source.y - target.y)
   return (distanceX * distanceX +
@@ -68,7 +70,10 @@ struct Location {
 
 let storeLocation = Location(x: 3, y: 3)
 
-func distance(from source: Location, to target: Location) -> Double {
+func distance(
+  from source: Location,
+  to target: Location
+) -> Double {
   let distanceX = Double(source.x - target.x)
   let distanceY = Double(source.y - target.y)
   return sqrt(distanceX * distanceX + distanceY * distanceY)
