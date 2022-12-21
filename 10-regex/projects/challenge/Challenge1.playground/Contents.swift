@@ -30,7 +30,7 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-let capsRegex = /\b[a-z0-9]*[A-Z]+[a-z0-9]*\b/
+let capsRegex = /\b[a-z0-9]*[A-Z]{2,}[a-z0-9]*\b/
 
 let testingString1 = "abcdef ABCDEF 12345 abc123 ABC 123 123ABC 123abc abcABC"
 
@@ -58,4 +58,12 @@ for match in testingString3.matches(of: capsRegex) {
     print(String(match.output))
 }
 
+print("----------------")
+print("Test 4: No Matches")
+
+let testingString4 = "abcA12a3 abc123"
+
+for match in testingString4.matches(of: capsRegex) {
+    print(String(match.output))
+}
 print("----------------")

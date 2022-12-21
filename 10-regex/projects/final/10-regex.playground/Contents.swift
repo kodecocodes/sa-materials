@@ -42,6 +42,9 @@ print(stringToSearch.contains(searchString))
 let flexibleExpression = /[Jj]ohn/
 print(stringToSearch.contains(flexibleExpression))
 
+// let lowercaseLetters = /[a-z*/
+let lowercaseLetters = /[a-z]*/
+
 let testingString1 = "abcdef ABCDEF 12345 abc123 ABC 123 123ABC 123abc abcABC"
 let lettersAndNumbers = /[a-z]+[0-9]+/
 

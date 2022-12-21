@@ -36,4 +36,4 @@
 
  */
 
-//The regex needs to account for upper-case letters, so changing it to /[A-Z]+[0-9]+/ or even just /\w+/ would match all of the examples.
+//The regex needs to account for upper-case letters, so changing it to /[a-zA-Z]+[0-9]+/ or even just /\w+/ would match all of the examples.
