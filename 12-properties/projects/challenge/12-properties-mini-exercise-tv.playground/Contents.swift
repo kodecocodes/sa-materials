@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,32 +29,22 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-
 /*:
- ## Properties Challenge 1
- 
- Rewrite the `IceCream` structure below to use default values and lazy initialization:
- 
- ```
- /// struct IceCream {
- ///   let name: String
- ///   let ingredients: [String]
- /// }
- ```
- 
- 1. Use default values for the properties.
- 2. Lazily initialize the `ingredients` array.
-
+ ## Properties Mini-exercise, TV
+ Do you have a television or a computer monitor? Measure the height and width, plug it into a `TV` struct, and see if the diagonal measurement matches what you think it is.
  */
-struct IceCream {
-  var name = "Vanilla"
-  lazy var ingredients: [String] = {
-    ["sugar", "milk", "yolks", "cream", "vanilla"]
-  }()
+
+// Picture of real TV: https://1.bp.blogspot.com/_lToCdYsa_6Y/TUbNORiitgI/AAAAAAAAABg/WSYmogK0bLc/s1600/compare02.gif
+
+struct TV {
+  var height: Double
+  var width: Double
+  
+  var diagonal: Int {
+    let result = (height * height + width * width).squareRoot().rounded()
+    return Int(result)
+  }
 }
 
-var iceCream = IceCream()
-// ingredients not yet initialized
-iceCream.ingredients.append("strawberries")
-// ingredients initialized before appending
-iceCream.name = "Strawberry"
+let tv = TV(height: 15.7, width: 28)
+tv.diagonal // 32

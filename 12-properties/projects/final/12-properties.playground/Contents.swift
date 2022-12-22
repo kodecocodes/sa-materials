@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -50,7 +50,7 @@ var person = Contact(fullName: "Grace Murray",
 person.relationship // Friend
 
 var boss = Contact(fullName: "Ray Wenderlich",
-                   emailAddress: "ray@raywenderlich.com",
+                   emailAddress: "ray@kodeco.com",
                    relationship: "Boss")
 
 person.fullName // Grace Murray
