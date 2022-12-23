@@ -101,7 +101,7 @@ jane.lists["Action"]?.report()
  
  - `TShirt` - Represents a shirt style you can buy. Each `TShirt` has a size, color, price, and an optional image on the front.
  - `User` - A registered user of the t-shirt store app. A user has a name, email, and a `ShoppingCart` (below).
- - `Address` - Represents a shipping address, containing the name, street, city, and zip code.
+ - `Address` - This represents a shipping address, containing the name, street, city, and zip code.
  - `ShoppingCart` - Holds a current order, which is composed of an array of `TShirt` that the `User` wants to buy, as well as a method to calculate the total cost. Additionally, there is an `Address` that represents where the order will be shipped.
 */
 /*
