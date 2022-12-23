@@ -1,15 +1,15 @@
-/// Copyright (c) 2021 Razeware LLC
-/// 
+/// Copyright (c) 2023 Kodeco LLC
+///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-/// 
+///
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-/// 
+///
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,7 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-/// 
+///
 /// This project and source code may use libraries or frameworks that are
 /// released under various Open-Source licenses. Use of those libraries and
 /// frameworks are governed by their own individual licenses.
@@ -38,8 +38,8 @@
  Create a `User` and a `List` class that uses reference semantics to help maintain lists between users.
  
  - `User` - Has a method `addList(_:)` which adds the given list to a dictionary of `List` objects (using the `name` as a key), and `list(forName:) -> List?` which will return the `List` for the provided name.
- - `List` - Contains a name and an array of movie titles. A `print` method will print all the movies in the list.
- - Create `jane` and `john` users and have them create and share lists. Have both `jane` and `john` modify the same list and call `print` from both users. Are all the changes reflected?
+ - `List` - Contains a name and an array of movie titles. A `report` method will print all the movies in the list.
+ - Create `jane` and `john` users and create a list that they share. Have both `jane` and `john` modify the list and call `report` from both users. Are all the changes reflected?
 */
 class User {
   var lists: [String: List] = [:]
@@ -61,12 +61,12 @@ class List {
     self.name = name
   }
 
-  func print() {
-    Swift.print("Movie List: \(name)") // Prefix Swift is required to disambiguate
+  func report() {
+    print("Movie List: \(name)")
     for movie in movies {
-      Swift.print(movie)
+      print(movie)
     }
-    Swift.print("\n")
+    print("\n")
   }
 }
 
@@ -86,10 +86,10 @@ jane.lists["Action"]?.movies.append("Terminator")
 john.lists["Action"]?.movies.append("Die Hard")
 
 // See John's list:
-john.lists["Action"]?.print()
+john.lists["Action"]?.report()
 
 // See Jane's list:
-jane.lists["Action"]?.print()
+jane.lists["Action"]?.report()
 /*:
  What happens when you implement the same with structs and what problems do you run into?
  */
@@ -97,11 +97,11 @@ jane.lists["Action"]?.print()
 /*:
  ### Challenge 2
  
- Your challenge here is to build a set of objects to support a t-shirt store. Decide if each object should be a class or a struct, and why.
+ Your challenge here is to build a set of entities to support a t-shirt store. Decide if each entity should be a class or a struct, and why.
  
  - `TShirt` - Represents a shirt style you can buy. Each `TShirt` has a size, color, price, and an optional image on the front.
  - `User` - A registered user of the t-shirt store app. A user has a name, email, and a `ShoppingCart` (below).
- - `Address` - Represents a shipping address, containing the name, street, city, and zip code.
+ - `Address` - This represents a shipping address, containing the name, street, city, and zip code.
  - `ShoppingCart` - Holds a current order, which is composed of an array of `TShirt` that the `User` wants to buy, as well as a method to calculate the total cost. Additionally, there is an `Address` that represents where the order will be shipped.
 */
 /*
