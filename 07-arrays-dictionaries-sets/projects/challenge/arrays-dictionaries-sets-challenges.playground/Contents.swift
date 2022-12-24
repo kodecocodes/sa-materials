@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Razeware LLC
+ * Copyright (c) 2023 Kodeco Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
  */
 /*:
  ## Arrays
- ### Challenge 1: Which is valid
+ ### Challenge 1: Which is Valid
  Which of the following are valid statements?
 */
  
@@ -60,7 +60,7 @@ array5[0...1] = [4, 5] // Valid
 for item in array5 { print(item) }  // Valid
 
 /*:
- ### Challenge 2: Remove the first number
+ ### Challenge 2: Remove the First Number
  Write a function that removes the first occurrence of a given integer from an array of integers.
  This is the signature of the function:
  
@@ -78,7 +78,7 @@ func removingOnce(_ item: Int, from array: [Int]) -> [Int] {
 }
 
 /*:
- ### Challenge 3: Remove the numbers
+ ### Challenge 3: Remove the Numbers
  Write a function that removes all occurrences of a given integer from an array of integers. 
  This is the signature of the function:
  
@@ -98,7 +98,7 @@ func removing(_ item: Int, from array: [Int]) -> [Int] {
 }
 
 /*:
- ### Challenge 4: Reverse an array
+ ### Challenge 4: Reverse an Array
  Arrays have a `reversed()` method that returns an array holding the same elements as the original array, in reverse order. 
  Write a function that does the same thing, without using `reversed()`. This is the signature of the function:
 
@@ -116,7 +116,7 @@ func reversed(_ array: [Int]) -> [Int] {
 }
 
 /*:
- ### Challenge 5: Return the middle
+ ### Challenge 5: Return the Middle
  Write a function that returns the middle element of an array.
  When array size is even, return the first of the two middle elements.
  
@@ -133,7 +133,7 @@ func middle(_ array: [Int]) -> Int? {
 }
 
 /*:
- ### Challenge 6: Find the minimum and maximum
+ ### Challenge 6: Find the Minimum and Maximum
  
  Write a function that calculates the minimum and maximum value in an array of integers. 
  Calculate these values yourself, do not use the methods `min` and `max`. 
@@ -166,7 +166,7 @@ func minMax(of numbers: [Int]) -> (min: Int, max: Int)? {
 
 /*:
  ## Dictionaries
- ### Challenge 7: Which is valid
+ ### Challenge 7: Which is Valid
  Which of the following statements are valid?
  */
 
@@ -193,7 +193,7 @@ dict5["CA"] = nil // Valid
 
 
 /*:
- ### Challenge 8: Long names
+ ### Challenge 8: Long Names
  Given a dictionary with 2-letter state codes as keys and the full state name as values, write a function that prints all the states whose name is longer than 8 characters. For example, for this dictionary ["NY": "New York", "CA": "California"] the output would be "California".
  */
 
@@ -206,7 +206,7 @@ func printLongStateNames(in dictionary: [String: String]) {
 }
 
 /*:
- ### Challenge 9: Merge dictionaries
+ ### Challenge 9: Merge Dictionaries
  Write a function that combines two dictionaries into one. If a certain key appears in both dictionaries, ignore the pair from the first dictionary.
  This is the signature of the function:
  ```
@@ -223,7 +223,7 @@ func merging(_ dict1: [String: String], with dict2: [String: String]) -> [String
 }
 
 /*:
- ### Challenge 10: Count the characters
+ ### Challenge 10: Count the Characters
  Declare a function `occurrencesOfCharacters` that calculates which characters occur in a string, as well as how often each of these characters occur.
  Return the result as a dictionary. This is the function signature:
  ```
@@ -257,7 +257,7 @@ func occurrencesOfCharactersBonus(in text: String) -> [Character: Int] {
 }
 
 /*:
- ### Challenge 11: Unique values
+ ### Challenge 11: Unique Values
  Write a function that returns true if all of the values of a dictionary are unique.  Use a set to test uniqueness.
  This is the function signature:
  ```
@@ -276,7 +276,7 @@ func isInvertible(_ dictionary: [String: Int]) -> Bool {
 }
 
 /*:
- ### Challenge 12: Removing keys and setting values to nil
+ ### Challenge 12: Removing Keys and Setting Values to `nil`
  Given the dictionary:
  */
 var nameTitleLookup: [String: String?] = ["Mary": "Engineer", "Patrick": "Intern", "Ray": "Hacker"]

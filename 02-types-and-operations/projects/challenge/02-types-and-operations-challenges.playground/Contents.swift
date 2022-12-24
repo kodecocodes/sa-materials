@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Razeware LLC
+ * Copyright (c) 2022 Kodeco Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,13 +39,13 @@ let coordinates = (2, 3)
 
 /*:
  ## Types and Operations
- ### Challenge 2: Named coordinate
+ ### Challenge 2: Named Coordinate
  Create a constant called `namedCoordinate` with a `row` and `column` component of 2 and 3.
  */
 let namedCoordinate = (row: 2, column: 3)
 
 /*:
- ### Challenge 3: Which are valid?
+ ### Challenge 3: Which are Valid?
  Which of the following are valid statements?
 */
 //let character: Character = "Dog" // INVALID
@@ -54,33 +54,33 @@ let namedCoordinate = (row: 2, column: 3)
 //let string: String = "🐶" // VALID
 
 /*:
- ### Challenge 4. Does it compile?
+ ### Challenge 4. Does it Compile?
  Is this valid code?
 */
 let tuple = (day: 15, month: 8, year: 2015)
 //let day = tuple.Day // Invalid because it should be 'day' instead of 'Day'
 
 /*:
- ### Challenge 5: Find the error
+ ### Challenge 5: Find the Error
  What is wrong with the following code?
 */
 let name = "Matt"
 //name += " Galloway" // 'name' is a constant, so you can't change its value
 
 /*:
- ### Challenge 6: What is the type of `value`?
+ ### Challenge 6: What is the Type of `value`?
  What is the type of the constant called `value`?
  */
 let value = tuple.1 // value = 8 of type Double
 
 /*:
- ### Challenge 7: What is the value of month?
+ ### Challenge 7: What is the Value of `month`?
  What is the value of the constant called `month`?
 */
 let month = tuple.month // month = 8
 
 /*:
- ### Challenge 8: What is the value of `summary`?
+ ### Challenge 8: What is the Value of `summary`?
  What is the value of the constant called `summary`?
  */
 let number = 10
@@ -89,7 +89,7 @@ let summary = "\(number) multiplied by \(multiplier) equals \(number * multiplie
 // summary = "10 multiplied by 5 equals 50"
 
 /*:
- ### Challenge 9: Compute the value
+ ### Challenge 9: Compute the Value
   What is the sum of `a` and `b`, minus `c`?
  */
 let a = 4
@@ -98,7 +98,7 @@ let c: UInt8 = 12
 let answer = a + Int(b) - Int(c)
 
 /*:
- ### Challenge 10: Different precision 𝜋s
+ ### Challenge 10: Different Precision 𝜋s
  What is the difference between `Double.pi` and `Float.pi`?
  */
 let difference = Double.pi - Double(Float.pi)

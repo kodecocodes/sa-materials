@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Razeware LLC
+ * Copyright (c) 2023 Kodeco Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -73,7 +73,7 @@ print([2, 3, 1].first as Any)
 print([2, 3, 1].min() as Any)
 // > Optional(1)
 
-if let currentPlayer = currentPlayer {
+if let currentPlayer {
   print("\(currentPlayer) will start")
 }
 // > Alice will start
@@ -87,11 +87,11 @@ print("First player is \(firstPlayer)")
 
 let upcomingPlayersSlice = players[1...2]
 print(upcomingPlayersSlice[1], upcomingPlayersSlice[2])
-// > "Bob Cindy\n"
+// > "Bob Cindy"
 
 let upcomingPlayersArray = Array(players[1...2])
 print(upcomingPlayersArray[0], upcomingPlayersArray[1])
-// > "Bob Cindy\n"
+// > "Bob Cindy"
 
 
 func isEliminated(player: String) -> Bool {
@@ -101,7 +101,7 @@ func isEliminated(player: String) -> Bool {
 print(isEliminated(player: "Bob"))
 // > false
 
-players[1...3].contains("Bob")
+print(players[1...3].contains("Bob"))
 // > true
 
 // -------------------------
