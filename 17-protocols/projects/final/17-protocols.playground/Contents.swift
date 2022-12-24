@@ -92,7 +92,7 @@ class BitcoinAccount: Account {
   }
 }
 
-var accountType: Account.Type = BitcoinAccount.self
+let accountType: Account.Type = BitcoinAccount.self
 let account = accountType.init(initialAmount: 30.00)
 let transferAccount = accountType.init(transferAccount: account)!
 
