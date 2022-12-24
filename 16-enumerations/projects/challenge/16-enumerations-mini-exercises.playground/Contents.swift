@@ -36,8 +36,10 @@
 
  Wouldn't it be nice to request the semester from an instance like, `month.semester` instead of using the function? Add a `semester` computed property to the `Month` enumeration.
  */
-enum Month {
-  case january, february, march, april, may, june, july, august, september, october, november, december
+enum Month: Int {
+  case january = 1, february, march, april,
+       may, june, july, august,
+       september, october, november, december
   
   var semester: String {
     switch self {
@@ -58,9 +60,7 @@ let semester = month.semester // "Autumn"
  ### Months Until Winter Break Computed Property
  Make `monthsUntilWinterBreak` a computed property of the `Month` enumeration
  */
-enum Month: Int {
-  case january = 1, february, march, april, may, june, july, august, september, october, november, december
-
+extension Month {
   var monthsUntilWinterBreak: Int {
     Month.december.rawValue - rawValue
   }
