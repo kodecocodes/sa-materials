@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2023 Kodeco LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,8 +30,9 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
-//: Pet shop tasks
+//: ## Protocols
+//:
+//: ### Pet Shop Tasks
 //:
 //: Create a collection of protocols for tasks that need doing at a pet shop. The pet shop has dogs, cats, fish and birds.
 //: The pet shop duties include these tasks:
@@ -44,10 +45,10 @@ import Foundation
 //:
 //: * Pets that walk need exercise.
 //:
-//: * Tanks, cages, and litter boxes need to be cleanded occasionally.
+//: * Tanks, cages, and litter boxes need to be cleaned occasionally.
 //:
 
-//: 1. Create classes or structs for each animal and adopt the appropriate protocols. Feel free to simply use a print() statement for the method implementations.
+//: 1 - Create classes or structs for each animal and adopt the appropriate protocols. Feel free to simply use a print() statement for the method implementations.
 
 protocol Feedable {
   func feed()
@@ -117,7 +118,7 @@ class Bird: Feedable, Cageable {
   }
 }
 
-//: 2. Create homogenous arrays for animals that need to be fed, caged, cleaned, walked, and tanked. Add the appropriate animals to these arrays. The arrays should be declared using the protocol as the element type, for example `var caged: [Cageable]`.
+//: 2 - Create homogenous arrays for animals that need to be fed, caged, cleaned, walked, and tanked. Add the appropriate animals to these arrays. The arrays should be declared using the protocol as the element type, for example `var caged: [Cageable]`.
 
 let dog = Dog()
 let cat = Cat()
@@ -134,7 +135,7 @@ let cleaningDuties: [Cleanable] = [cat, fish, bird]
 // can't be walked to a homogenous list of `Walkable`!
 // let invalidWalkingDuties: [Walkable] = [dog, fish]
 
-//: 3. Write a loop that will perform the proper tasks (such as feed, cage, walk) on each element of each array.
+//: 3 - Write a loop that will perform the proper tasks (such as feed, cage, walk) on each element of each array.
 
 for walkable in walkingDuties {
   walkable.walk()
