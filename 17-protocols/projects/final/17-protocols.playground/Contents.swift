@@ -33,42 +33,81 @@
 //: ## Protocols
 
 protocol Vehicle {
-  func accelerate()
-  func stop()
+  /// Return a description of the state of the vehicle.
+  func describe() -> String
+
+  /// Increases speed until it reaches its maximum speed.
+  mutating func accelerate()
+
+  /// Stop moving. Reducing the speed to zero miles per hour.
+  mutating func stop()
+  
+  /// The speed of the vehicle in miles per hour.
+  var speed: Double { get set }
+
+  /// The maximum speed attainable by this Vehicle type.
+  static var maxSpeed: Double { get }
 }
 
 class Unicycle: Vehicle {
-  var peddling = false
-    
+  func describe() -> String {
+    "Unicycle @ \(speed) mph"
+  }
   func accelerate() {
-    peddling = true
+    speed = min(speed + 2, Self.maxSpeed)
   }
-    
-  func stop() {
-    peddling = false
+//  func stop() {
+//    speed = 0
+//  }
+  var speed: Double = 0
+  static var maxSpeed: Double { 15 }
+}
+
+struct Car {
+  func describe() -> String {
+    "Car @ \(speed) mph"
+  }
+  mutating func accelerate() {
+    speed = min(speed + 20, Self.maxSpeed)
+  }
+//  mutating func stop() {
+//    speed = 0
+//  }
+  var speed: Double = 0
+  static var maxSpeed: Double { 150 }
+}
+
+extension Car: Vehicle {}
+
+extension Vehicle {
+  mutating func stop() {
+    speed = 0
   }
 }
 
-enum Direction {
-  case left
-  case right
+extension Vehicle {
+  /// Return the speed as a value between 0-1.
+  var normalizedSpeed: Double {
+    speed / Self.maxSpeed
+  }
 }
 
-protocol DirectionalVehicle {
-  func accelerate()
-  func stop()
-  func turn(_ direction: Direction)
-  func description() -> String
+enum BrakePressure {
+  case light
+  case normal
+  case hard
 }
 
-protocol OptionalDirectionVehicle {
-  func turn()
-  func turn(_ direction: Direction)
+protocol Braking {
+  /// Apply the brakes.
+  mutating func brake(_ pressure: BrakePressure)
 }
 
-protocol VehicleProperties {
-  var weight: Int {get}
-  var name: String { get set }
+extension Braking {
+  /// Apply normal brakes.
+  mutating func brake() {
+    brake(.normal)
+  }
 }
 
 protocol Account {
@@ -98,42 +137,29 @@ let transferAccount = accountType.init(transferAccount: account)!
 
 protocol WheeledVehicle: Vehicle {
   var numberOfWheels: Int { get }
-  var wheelSize: Double { get set }
+  var wheelSize: Double { get }
 }
 
-//class Bike: Vehicle {
-//  var peddling = false
-//  var brakesApplied = false
-//
-//  func accelerate() {
-//    peddling = true
-//    brakesApplied = false
-//  }
-//
-//  func stop() {
-//    peddling = false
-//    brakesApplied = true
-//  }
-//}
+extension Unicycle: WheeledVehicle {
+  var numberOfWheels: Int { 1 }
+  var wheelSize: Double { 20.0 }
+}
 
-//class Bike: WheeledVehicle {
-//
-//  let numberOfWheels = 2
-//  var wheelSize = 16.0
-//
-//  var peddling = false
-//  var brakesApplied = false
-//
-//  func accelerate() {
-//    peddling = true
-//    brakesApplied = false
-//  }
-//
-//  func stop() {
-//    peddling = false
-//    brakesApplied = true
-//  }
-//}
+func stop(vehicles: inout [any Vehicle]) {
+  vehicles.indices.forEach {
+    vehicles[$0].stop()
+  }
+}
+
+protocol Wheeled {
+  var numberOfWheels: Int { get }
+  var wheelSize: Double { get }
+}
+
+extension Car: Wheeled {
+  var numberOfWheels: Int { 4 }
+  var wheelSize: Double { 17 }
+}
 
 protocol WeightCalculatable {
   associatedtype WeightType
@@ -159,36 +185,14 @@ class LightThing: WeightCalculatable {
 
 let weightedThing: any WeightCalculatable = LightThing()
 
-protocol Wheeled {
-  var numberOfWheels: Int { get }
-  var wheelSize: Double { get set }
+// func freeze(transportation: inout any Vehicle & Wheeled)
+func freeze(transportation: inout some Vehicle & Wheeled) {
+    transportation.stop()
+    print("Stopping the rotation of \(transportation.numberOfWheels) wheel(s).")
 }
 
-class Bike: Vehicle, Wheeled {
-
-  let numberOfWheels = 2
-  var wheelSize = 16.0
-
-  var peddling = false
-  var brakesApplied = false
-
-  func accelerate() {
-    peddling = true
-    brakesApplied = false
-  }
-
-  func stop() {
-    peddling = false
-    brakesApplied = true
-  }
-}
-
-func roundAndRound(transportation: Vehicle & Wheeled) {
-  transportation.stop()
-  print("The brakes are being applied to \(transportation.numberOfWheels) wheels.")
-}
-
-roundAndRound(transportation: Bike())
+var car = Car()
+freeze(transportation: &car)
 
 protocol Reflective {
   var typeName: String { get }
@@ -202,22 +206,6 @@ extension String: Reflective {
 
 let title = "Swift Apprentice!"
 title.typeName
-
-class AnotherBike: Wheeled {
-  var peddling = false
-  let numberOfWheels = 2
-  var wheelSize = 16.0
-}
-
-extension AnotherBike: Vehicle {
-  func accelerate() {
-    peddling = true
-  }
-    
-  func stop() {
-    peddling = false
-  }
-}
 
 protocol Named {
   var name: String { get set }
