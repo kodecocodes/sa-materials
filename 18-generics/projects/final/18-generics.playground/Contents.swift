@@ -101,9 +101,24 @@ class Keeper<Animal: Pet> {
 
 let jason = Keeper(name: "Jason", morningCare: Cat(name: "Whiskers"), afternoonCare: Cat(name: "Sleepy"))
 
+// Version 1
+//func callForDinner<Animal: Pet>(_ pet: Animal) {
+//   print("Here \(pet.name)-\(pet.name)! Dinner time!")
+//}
+
+// Version 2
+//func callForDinner(_ pet: some Pet) {
+//  print("Here \(pet.name)-\(pet.name)! Dinner time!")
+//}
+
 //
 // generic where clauses
 //
+
+// Version 3
+func callForDinner<Animal>(_ pet: Animal) where Animal: Pet {
+  print("Here \(pet.name)-\(pet.name)! Dinner time!")
+}
 
 // with a generic where clause:
 // a type extension is restricted by a constraint on the type parameter
@@ -124,6 +139,41 @@ extension Cat: Meowable {
     print("\(self.name) says meow!")
   }
 }
+
+// Generic return types
+let lost: [any Pet] = [Cat(name: "Whiskers"), Dog(name: "Hachiko")]
+
+/// Return a lost Cat.
+func findLostCat(name: String) -> Cat? {
+  lost.lazy.compactMap {
+    $0 as? Cat
+  }.first {
+    $0.name == name
+  }
+}
+
+func findLostPet(name: String) -> (any Pet)? {
+  lost.first { $0.name == name}
+}
+
+//func findLost<Animal: Pet>(_ petType: Animal.Type, name: String) -> (some Pet)? {
+//  lost.lazy.compactMap {
+//    $0 as? Animal
+//  }.first {
+//    $0.name == name
+//  }
+//}
+
+func findLost<Animal: Pet>(_ petType: Animal.Type, name: String) -> Animal? {
+  lost.lazy.compactMap {
+    $0 as? Animal
+  }.first {
+    $0.name == name
+  }
+}
+
+findLost(Cat.self, name: "Whiskers")?.meow()
+findLost(Dog.self, name: "Hachiko")
 
 extension Array: Meowable where Element: Meowable {
   func meow() {
