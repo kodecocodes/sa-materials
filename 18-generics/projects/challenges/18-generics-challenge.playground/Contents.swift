@@ -33,7 +33,7 @@
 /*:
  ## Generics Challenge
  
- Consider the pet and keeper example from earlier in the chapter:
+ Consider the pet and keeper examples from earlier in the chapter:
  
  ```swift
  class Cat {

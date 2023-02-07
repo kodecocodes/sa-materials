@@ -52,8 +52,8 @@ let dogKeeper = KeeperKind(keeperOf: .dog)
 class Cat {}
 class Dog {}
 
-class KeeperForCats {}
-class KeeperForDogs {}
+class KeeperOfCats {}
+class KeeperOfDogs {}
 */
 
 /* try 2: generics to establish type relationship
@@ -63,6 +63,7 @@ class Dog {}
 class Keeper<Animal> {}
 
 var aCatKeeper = Keeper<Cat>()
+
 //var aKeeper = Keeper()  // compile-time error!
 */
 

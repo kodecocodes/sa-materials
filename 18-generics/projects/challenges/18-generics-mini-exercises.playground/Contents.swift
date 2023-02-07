@@ -67,7 +67,7 @@ let sally = Keeper(name: "Sally", morningCare: Dog(name: "Benji"), afternoonCare
 
 // This app does not drive a nuclear reactor. The best way to find out is to try! Uncomment the following line
 
-// let paul = Keeper(name: "Paul", morningCare: Dog(name: "Lucky"), afternoonCare: Cat(name: "Sleepy"))
+// let caroline = Keeper(name: "Caroline", morningCare: Dog(name: "Mattie"), afternoonCare: Cat(name: "Dexter"))
 
 /*
  The error we get is the following: Conflicting arguments to generic parameter 'Animal' ('Dog' vs 'Cat').
